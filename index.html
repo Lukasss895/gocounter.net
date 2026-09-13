@@ -20,13 +20,22 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{
-    background:var(--void);
-    color:var(--ash);
-    font-family:'Barlow', sans-serif;
-    line-height:1.5;
-    overflow-x:hidden;
+  
+  /* Vlastný CS:GO crosshair ako kurzor myši */
+  body {
+    background: var(--void);
+    color: var(--ash);
+    font-family: 'Barlow', sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v8h8v2h-8v8h-2v-8H3v-2h8V2z' fill='%23C7D400' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") 12 12, auto;
   }
+
+  /* Vlastný kurzor aj pre klikacie elementy */
+  a, button, input, textarea, .news-card {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v8h8v2h-8v8h-2v-8H3v-2h8V2z' fill='%23F1591E' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") 12 12, pointer;
+  }
+
   h1,h2,h3,.display{
     font-family:'Oswald', sans-serif;
     text-transform:uppercase;
@@ -154,24 +163,10 @@
   }
   .btn-ghost:hover{border-color:var(--ash); color:var(--white);}
  
-  /* ---------- TICKER ---------- */
+  /* ---------- TICKER (prázdny, nehýbe sa) ---------- */
   .ticker-bar{
     background:var(--panel2); border-bottom:1px solid var(--steel);
-    overflow:hidden; white-space:nowrap; padding:11px 0;
-  }
-  .ticker-track{
-    display:inline-flex; gap:60px; animation:scroll 32s linear infinite;
-    font-family:'Barlow Condensed', sans-serif; font-size:15px; letter-spacing:0.02em;
-    color:var(--ash-dim);
-  }
-  .ticker-track span{color:var(--signal); font-weight:600; margin-right:10px;}
-  @keyframes scroll{
-    0%{transform:translateX(0);}
-    100%{transform:translateX(-50%);}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .ticker-track{animation:none;}
-    .pulse{animation:none;}
+    height: 14px;
   }
  
   /* ---------- TRAILER ---------- */
@@ -236,7 +231,7 @@
   .news-grid{display:grid; grid-template-columns:1fr; max-width:640px;}
   .news-card{
     background:var(--void); border:1px solid var(--steel); padding:28px; display:flex; flex-direction:column; gap:14px;
-    transition:background 0.18s ease; cursor:pointer;
+    transition:background 0.18s ease;
   }
   .news-card:hover{background:#101208;}
   .news-card .thumb{
@@ -321,9 +316,6 @@
  
   .event-about h2{font-size:clamp(28px,4vw,38px); margin-bottom:18px;}
   .event-about p{color:var(--ash-dim); font-size:15.5px; margin-bottom:16px; max-width:480px;}
-  .stat-row{display:flex; gap:36px; margin-top:32px; flex-wrap:wrap;}
-  .stat-row div span.n{display:block; font-family:'Oswald'; font-size:34px; color:var(--white);}
-  .stat-row div span.l{font-size:12.5px; color:var(--ash-dim); text-transform:uppercase; letter-spacing:0.06em;}
  
   /* ---------- REGISTER FORM ---------- */
   .register{border-top:1px solid var(--steel); background:var(--panel2);}
@@ -427,18 +419,7 @@
   </div>
 </section>
  
-<div class="ticker-bar">
-  <div class="ticker-track">
-    <span>Patch 0.4 —</span>Fixed a bug with the overtime economy reset
-    <span>Slot update —</span>2 spots left in Group B, sign up by Friday
-    <span>Casting —</span>Finals will be called by Vlado & Miška
-    <span>Map —</span>Ancient added to the pool in place of Vertigo
-    <span>Patch 0.4 —</span>Fixed a bug with the overtime economy reset
-    <span>Slot update —</span>2 spots left in Group B, sign up by Friday
-    <span>Casting —</span>Finals will be called by Vlado & Miška
-    <span>Map —</span>Ancient added to the pool in place of Vertigo
-  </div>
-</div>
+<div class="ticker-bar"></div>
  
 <section class="trailer">
   <div class="wrap" style="padding:60px 0;">
@@ -489,11 +470,7 @@
       <h2>About the event</h2>
       <p>GO:COUNTER MAJOR started on one Discord server during a slow summer. No sponsor, no production company — just a group of people who wanted to see who in the community could actually play under pressure.</p>
       <p>Squads are trickling in — Retakes and the new rank system are already live in the community mod, finals are streamed online with full casting, no venue, no travel needed.</p>
-      <div class="stat-row">
-        <div><span class="n">1</span><span class="l">Teams so far</span></div>
-        <div><span class="n">5</span><span class="l">Players</span></div>
-        <div><span class="n">3</span><span class="l">Maps in pool</span></div>
-      </div>
+      
       <div class="prize-box" style="margin-top:36px;">
         <div class="reward-title">Winner takes</div>
         <div class="reward-name">2 weeks <span>VIP</span></div>
