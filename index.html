@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GO:COUNTER MAJOR — Official Site</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0B0D0A;
+    --panel2:#191C14;
+    --steel:#3A3D30;
+    --ash:#C9CBC0;
+    --ash-dim:#8B8E80;
+    --signal:#F1591E;
+    --signal-dim:#7A2E0F;
+    --toxic:#C7D400;
+    --white:#F4F5EE;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--void);
+    color:var(--ash);
+    font-family:'Barlow', sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    color:var(--white);
+    font-weight:600;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  /* background texture: faint grid + scanlines */
+  .noise-grid{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      linear-gradient(rgba(201,203,192,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,203,192,0.035) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,13,10,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--steel);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Oswald', sans-serif;
+    font-size:19px; font-weight:700; letter-spacing:0.01em;
+    color:var(--white);
+    display:flex; align-items:center; gap:10px; white-space:nowrap;
+  }
+  .logo .dot{width:9px; height:9px; background:var(--signal); clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
+  .navlinks{display:flex; gap:34px; font-size:15px; font-weight:500;}
+  .navlinks a{color:var(--ash-dim); position:relative; padding:4px 0;}
+  .navlinks a:hover{color:var(--white);}
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px;
+    background:var(--signal); transition:width 0.2s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--signal); color:var(--void); font-weight:600; font-size:14px;
+    padding:10px 20px; clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+  }
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:24px; height:2px; background:var(--white);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:96px 0 70px;
+    border-bottom:1px solid var(--steel);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; top:-20%; right:-10%; width:60%; height:140%;
+    background:radial-gradient(ellipse at center, rgba(241,89,30,0.14), transparent 65%);
+    z-index:0;
+  }
+  .hero-inner{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 28px;}
+  .hero-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:14px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--signal); border:1px solid var(--signal-dim);
+    padding:6px 14px; margin-bottom:26px;
+    clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
+    transform:rotate(-1deg);
+  }
+  .hero-tag .pulse{
+    width:7px; height:7px; border-radius:50%; background:var(--signal);
+    box-shadow:0 0 0 0 rgba(241,89,30,0.6);
+    animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(241,89,30,0.55);}
+    70%{box-shadow:0 0 0 8px rgba(241,89,30,0);}
+    100%{box-shadow:0 0 0 0 rgba(241,89,30,0);}
+  }
+  .hero h1{
+    font-size:clamp(44px, 7.4vw, 88px);
+    line-height:0.94;
+    letter-spacing:-0.01em;
+    max-width:900px;
+    position:relative;
+  }
+  .hero h1 .spray{
+    display:block;
+    color:var(--toxic);
+    -webkit-text-stroke:0px;
+    position:relative;
+  }
+  .hero-sub{
+    margin-top:26px; max-width:520px; font-size:17px; color:var(--ash-dim);
+  }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:28px; margin-top:36px;
+    font-family:'Barlow Condensed', sans-serif; font-size:16px;
+  }
+  .hero-meta div{display:flex; flex-direction:column; gap:2px;}
+  .hero-meta span.label{font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ash-dim);}
+  .hero-meta span.val{font-size:19px; color:var(--white); font-weight:600;}
+  .hero-actions{display:flex; gap:16px; margin-top:42px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--signal); color:var(--void); font-weight:600; font-size:15px;
+    padding:14px 28px; clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
+    transition:transform 0.15s ease, background 0.15s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:#ff6b2b; transform:translateY(-1px);}
+  .btn-ghost{
+    border:1px solid var(--steel); color:var(--ash);
+    padding:14px 28px; clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
+    font-weight:600; font-size:15px;
+    transition:border-color 0.15s ease, color 0.15s ease;
+  }
+  .btn-ghost:hover{border-color:var(--ash); color:var(--white);}
+
+  /* ---------- TICKER ---------- */
+  .ticker-bar{
+    background:var(--panel2); border-bottom:1px solid var(--steel);
+    overflow:hidden; white-space:nowrap; padding:11px 0;
+  }
+  .ticker-track{
+    display:inline-flex; gap:60px; animation:scroll 32s linear infinite;
+    font-family:'Barlow Condensed', sans-serif; font-size:15px; letter-spacing:0.02em;
+    color:var(--ash-dim);
+  }
+  .ticker-track span{color:var(--signal); font-weight:600; margin-right:10px;}
+  @keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none;}
+    .pulse{animation:none;}
+  }
+
+  /* ---------- TRAILER ---------- */
+  .trailer{border-bottom:1px solid var(--steel);}
+  .trailer-frame{
+    position:relative;
+    aspect-ratio:16/9;
+    background:#0E0F0A;
+    border:1px solid var(--steel);
+    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .trailer-frame::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(115deg, rgba(199,212,0,0.05) 0 3px, transparent 3px 22px),
+      linear-gradient(200deg, rgba(241,89,30,0.10), transparent 55%);
+  }
+  .play-btn{
+    position:relative; z-index:1;
+    width:76px; height:76px; border-radius:50%;
+    border:2px solid var(--ash-dim);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .play-btn::after{
+    content:''; width:0; height:0;
+    border-top:13px solid transparent; border-bottom:13px solid transparent;
+    border-left:20px solid var(--ash-dim);
+    margin-left:5px;
+  }
+  .trailer-note{
+    position:absolute; z-index:1; top:18px; right:22px;
+    font-family:'Barlow Condensed'; font-size:14px; color:var(--toxic);
+    border:1px dashed var(--toxic); padding:6px 12px;
+    transform:rotate(2.5deg);
+  }
+  .trailer-caption{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:16px; flex-wrap:wrap; gap:8px;
+  }
+  .trailer-caption h3{font-size:17px; text-transform:none; color:var(--white); font-weight:600;}
+  .trailer-caption span{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed';}
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding:84px 0;}
+  .sec-head{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    margin-bottom:44px; gap:24px; flex-wrap:wrap;
+    border-bottom:1px solid var(--steel); padding-bottom:20px;
+  }
+  .sec-head h2{font-size:clamp(30px,4vw,42px); letter-spacing:0.01em;}
+  .sec-head p{color:var(--ash-dim); font-size:15px; max-width:360px;}
+  .sec-num{
+    font-family:'Barlow Condensed'; font-size:14px; color:var(--ash-dim);
+    letter-spacing:0.08em;
+  }
+
+  /* ---------- NEWS ---------- */
+  .news{border-top:1px solid var(--steel);}
+  .news-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:1px; background:var(--steel);}
+  .news-card{
+    background:var(--void); padding:28px; display:flex; flex-direction:column; gap:14px;
+    transition:background 0.18s ease;
+  }
+  .news-card:hover{background:#101208;}
+  .news-card .thumb{
+    width:100%; aspect-ratio:16/10;
+    background:
+      linear-gradient(135deg, rgba(241,89,30,0.22), rgba(199,212,0,0.08) 60%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 14px),
+      #14150F;
+    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+    position:relative;
+  }
+  .news-card:nth-child(2) .thumb{
+    background:
+      linear-gradient(200deg, rgba(199,212,0,0.16), rgba(241,89,30,0.05) 65%),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 16px),
+      #121309;
+  }
+  .news-card:nth-child(3) .thumb{
+    background:
+      linear-gradient(160deg, rgba(120,124,102,0.2), rgba(241,89,30,0.08) 70%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 18px),
+      #131409;
+  }
+  .news-card.feature .thumb{aspect-ratio:16/9;}
+  .news-date{
+    font-family:'Barlow Condensed'; font-size:13px; color:var(--signal);
+    letter-spacing:0.06em; text-transform:uppercase; font-weight:600;
+  }
+  .news-card h3{font-size:21px; line-height:1.15; text-transform:none; font-weight:600;}
+  .news-card.feature h3{font-size:27px;}
+  .news-card p{font-size:14.5px; color:var(--ash-dim);}
+
+  /* ---------- UPDATES ---------- */
+  .updates{border-top:1px solid var(--steel); background:var(--panel2);}
+  .update-list{display:flex; flex-direction:column;}
+  .update-row{
+    display:grid; grid-template-columns:110px 1fr auto; gap:24px; align-items:center;
+    padding:22px 0; border-bottom:1px solid var(--steel);
+  }
+  .update-row:last-child{border-bottom:none;}
+  .update-ver{
+    font-family:'Barlow Condensed'; font-weight:600; font-size:15px;
+    color:var(--void); background:var(--toxic);
+    padding:5px 10px; text-align:center;
+    clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);
+    justify-self:start;
+  }
+  .update-text h4{
+    font-family:'Barlow'; font-weight:600; text-transform:none; color:var(--white);
+    font-size:16.5px; margin-bottom:3px;
+  }
+  .update-text p{font-size:14px; color:var(--ash-dim);}
+  .update-date{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed'; white-space:nowrap;}
+  .update-row[data-update]{cursor:pointer; transition:background 0.15s ease;}
+  .update-row[data-update]:hover{background:rgba(241,89,30,0.05);}
+
+  /* ---------- UPDATE MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:100;
+    background:rgba(6,7,5,0.86);
+    backdrop-filter:blur(3px);
+    display:none; align-items:center; justify-content:center;
+    padding:24px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-box{
+    position:relative;
+    background:var(--void); border:1px solid var(--steel);
+    max-width:640px; width:100%; max-height:82vh; overflow-y:auto;
+    padding:44px 40px;
+    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+  }
+  .modal-close{
+    position:absolute; top:18px; right:22px;
+    background:none; border:none; color:var(--ash-dim);
+    font-size:28px; line-height:1; cursor:pointer;
+  }
+  .modal-close:hover{color:var(--white);}
+  .modal-box h3{font-size:26px; text-transform:none; margin:16px 0 6px; font-weight:600;}
+  .modal-date{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed';}
+  .modal-body{margin-top:24px; font-size:15.5px; color:var(--ash); display:flex; flex-direction:column; gap:14px;}
+  .modal-body h4{font-family:'Barlow'; text-transform:none; color:var(--white); font-size:15.5px; font-weight:600; margin-top:6px;}
+
+  /* ---------- EVENT / BRACKET ---------- */
+  .event{border-top:1px solid var(--steel);}
+  .event-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  .prize-box{
+    border:1px solid var(--steel); padding:32px;
+    clip-path:polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    background:linear-gradient(160deg, rgba(241,89,30,0.06), transparent 60%);
+  }
+  .prize-box .amount{font-size:52px; font-family:'Oswald'; color:var(--white); font-weight:700;}
+  .prize-box .cur{color:var(--signal);}
+  .prize-box .caption{font-size:14px; color:var(--ash-dim); margin-top:6px;}
+  .prize-box .reward-title{font-size:15px; color:var(--ash-dim); text-transform:uppercase; letter-spacing:0.06em; font-family:'Barlow Condensed'; font-weight:600;}
+  .prize-box .reward-name{font-size:34px; font-family:'Oswald'; color:var(--white); font-weight:700; margin-top:4px;}
+  .prize-box .reward-name span{color:var(--toxic);}
+  .perk-list{margin-top:18px; display:flex; flex-direction:column; gap:10px;}
+  .perk-list li{display:flex; gap:10px; font-size:14.5px; color:var(--ash); align-items:flex-start; list-style:none;}
+  .perk-list li::before{content:'—'; color:var(--signal); flex-shrink:0;}
+  .team-list{margin-top:28px; display:flex; flex-direction:column; gap:0;}
+  .team-row{
+    display:flex; align-items:center; gap:16px; padding:13px 0;
+    border-bottom:1px solid var(--steel); font-size:15px;
+  }
+  .team-row .seed{
+    font-family:'Barlow Condensed'; color:var(--ash-dim); width:24px; font-size:14px;
+  }
+  .team-row .badge{
+    width:28px; height:28px; background:var(--panel2); border:1px solid var(--steel);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Oswald'; font-size:12px; color:var(--toxic);
+    clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%);
+  }
+  .team-row .name{color:var(--white); font-weight:500;}
+  .team-row .status{margin-left:auto; font-size:12px; color:var(--ash-dim); font-family:'Barlow Condensed'; letter-spacing:0.05em;}
+
+  .event-about h2{font-size:clamp(28px,4vw,38px); margin-bottom:18px;}
+  .event-about p{color:var(--ash-dim); font-size:15.5px; margin-bottom:16px; max-width:480px;}
+  .stat-row{display:flex; gap:36px; margin-top:32px; flex-wrap:wrap;}
+  .stat-row div span.n{display:block; font-family:'Oswald'; font-size:34px; color:var(--white);}
+  .stat-row div span.l{font-size:12.5px; color:var(--ash-dim); text-transform:uppercase; letter-spacing:0.06em;}
+
+  /* ---------- REGISTER FORM ---------- */
+  .register{border-top:1px solid var(--steel); background:var(--panel2);}
+  .register-box{
+    max-width:560px;
+    border:1px solid var(--steel); padding:40px;
+    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    background:linear-gradient(160deg, rgba(241,89,30,0.05), transparent 60%);
+  }
+  .register-box p.note{color:var(--ash-dim); font-size:14.5px; margin:-6px 0 28px; max-width:440px;}
+  .form-row{display:flex; flex-direction:column; gap:8px; margin-bottom:20px;}
+  .form-row label{
+    font-family:'Barlow Condensed'; font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--ash-dim); font-weight:600;
+  }
+  .form-row input, .form-row textarea{
+    background:var(--void); border:1px solid var(--steel); color:var(--white);
+    font-family:'Barlow'; font-size:15px; padding:12px 14px;
+    clip-path:polygon(8px 0,100% 0,100% 100%,0 100%,0 8px);
+    resize:vertical;
+  }
+  .form-row input:focus, .form-row textarea:focus{outline:2px solid var(--signal); outline-offset:1px; border-color:var(--signal);}
+  .form-row input::placeholder, .form-row textarea::placeholder{color:#5A5D50;}
+  .register-box button{border:none; cursor:pointer; margin-top:6px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--steel); padding:50px 0 34px;}
+  .foot-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; margin-bottom:36px;}
+  .foot-links{display:flex; gap:48px; flex-wrap:wrap;}
+  .foot-col h5{font-size:13px; text-transform:uppercase; letter-spacing:0.07em; color:var(--ash-dim); margin-bottom:12px; font-family:'Barlow Condensed'; font-weight:600;}
+  .foot-col a{display:block; font-size:14.5px; color:var(--ash); margin-bottom:9px;}
+  .foot-col a:hover{color:var(--signal);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; padding-top:24px; border-top:1px solid var(--steel);
+    font-size:13px; color:var(--ash-dim); flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    .burger{display:flex;}
+    .news-grid{grid-template-columns:1fr;}
+    .event-grid{grid-template-columns:1fr; gap:44px;}
+    .update-row{grid-template-columns:80px 1fr; row-gap:6px;}
+    .update-date{grid-column:2; }
+  }
+  :focus-visible{outline:2px solid var(--signal); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="noise-grid"></div>
+
+<header>
+  <nav>
+    <div class="logo"><span class="dot"></span>GO:COUNTER MAJOR</div>
+    <div class="navlinks">
+      <a href="#news">News</a>
+      <a href="#updates">Updates</a>
+      <a href="#event">Event</a>
+      <a href="#register">Register</a>
+      <a href="#footer">Contact</a>
+    </div>
+    <a href="#" class="nav-cta">Watch live</a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="pulse"></span>Registration open</div>
+    <h1>GO:COUNTER<span class="spray">MAJOR</span></h1>
+    <p class="hero-sub">A community CS tournament with no sponsors, no polish — just whoever's got the guts to sign up, one map pool, and one night people will be talking about long after the server crashes.</p>
+    <div class="hero-meta">
+      <div><span class="label">Date</span><span class="val">Nov 15–16</span></div>
+      <div><span class="label">Format</span><span class="val">8 teams / BO3</span></div>
+      <div><span class="label">Venue</span><span class="val">Online only</span></div>
+    </div>
+    <div class="hero-actions">
+      <a href="#register" class="btn-primary">Register a team</a>
+      <a href="#news" class="btn-ghost">What's new</a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span>Patch 0.4 —</span>Fixed a bug with the overtime economy reset
+    <span>Slot update —</span>2 spots left in Group B, sign up by Friday
+    <span>Casting —</span>Finals will be called by Vlado & Miška
+    <span>Map —</span>Ancient added to the pool in place of Vertigo
+    <span>Patch 0.4 —</span>Fixed a bug with the overtime economy reset
+    <span>Slot update —</span>2 spots left in Group B, sign up by Friday
+    <span>Casting —</span>Finals will be called by Vlado & Miška
+    <span>Map —</span>Ancient added to the pool in place of Vertigo
+  </div>
+</div>
+
+<section class="trailer">
+  <div class="wrap" style="padding:60px 0;">
+    <div class="trailer-frame">
+      <div class="trailer-note">footage coming soon</div>
+      <div class="play-btn"></div>
+    </div>
+    <div class="trailer-caption">
+      <h3>Announcement trailer</h3>
+      <span>Uploading in a few days — check back or watch for it on Discord</span>
+    </div>
+  </div>
+</section>
+
+<section class="news" id="news">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>News</h2>
+        <p>Ongoing updates from the run-up, qualifiers, and behind the scenes.</p>
+      </div>
+      <span class="sec-num">03 current stories</span>
+    </div>
+    <div class="news-grid">
+      <div class="news-card feature">
+        <div class="thumb"></div>
+        <span class="news-date">September 8</span>
+        <h3>First team locked in: Sqovaq Team</h3>
+        <p>Sqovaq Team is officially our first confirmed roster. Registration is still open for everyone else.</p>
+      </div>
+      <div class="news-card">
+        <div class="thumb"></div>
+        <span class="news-date">September 2</span>
+        <h3>Sign-ups still open</h3>
+        <p>Only one slot filled so far — get your squad in before the pool fills up.</p>
+      </div>
+      <div class="news-card">
+        <div class="thumb"></div>
+        <span class="news-date">August 27</span>
+        <h3>Trailer dropping this week</h3>
+        <p>We're cutting the announcement trailer right now — should be live in a few days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="updates" id="updates">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Updates</h2>
+        <p>Changes to the rules, the format, and the tournament's tech setup.</p>
+      </div>
+      <span class="sec-num">changelog — click to read</span>
+    </div>
+    <div class="update-list">
+      <div class="update-row" data-update="v1">
+        <span class="update-ver">v1.0</span>
+        <div class="update-text">
+          <h4>New rank system + Retakes mode</h4>
+          <p>GO:COUNTER now has its own rank system, plus a new Retakes mode. Click to read the full breakdown.</p>
+        </div>
+        <span class="update-date">Sep 13</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="updateModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <span class="update-ver" id="modalVer">v1.0</span>
+    <h3 id="modalTitle">New rank system + Retakes mode</h3>
+    <span class="modal-date" id="modalDate">Sep 13</span>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<section class="event" id="event">
+  <div class="wrap event-grid">
+    <div class="event-about">
+      <h2>About the event</h2>
+      <p>GO:COUNTER MAJOR started on one Discord server during a slow summer. No sponsor, no production company — just a group of people who wanted to see who in the community could actually play under pressure.</p>
+      <p>Squads are trickling in — Retakes and the new rank system are already live in the community mod, finals are streamed online with full casting, no venue, no travel needed.</p>
+      <div class="stat-row">
+        <div><span class="n">1</span><span class="l">Teams so far</span></div>
+        <div><span class="n">5</span><span class="l">Players</span></div>
+        <div><span class="n">3</span><span class="l">Maps in pool</span></div>
+      </div>
+      <div class="prize-box" style="margin-top:36px;">
+        <div class="reward-title">Winner takes</div>
+        <div class="reward-name">2 weeks <span>VIP</span></div>
+        <ul class="perk-list">
+          <li>Colored name + VIP tag on the Discord</li>
+          <li>Guaranteed slot in the next tournament — no qualifiers needed</li>
+          <li>Pick the map for your first match next time</li>
+          <li>Your clip featured in the next trailer</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h2 style="font-size:24px; margin-bottom:6px;">Confirmed teams</h2>
+      <p style="color:var(--ash-dim); font-size:14px; margin-bottom:10px;">First one's in — more slots still open.</p>
+      <div class="team-list">
+        <div class="team-row"><span class="seed">01</span><span class="badge">SQ</span><span class="name">Sqovaq Team</span><span class="status">Confirmed</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="register" id="register">
+  <div class="wrap">
+    <div class="sec-head" style="border-bottom:none;">
+      <div>
+        <h2>Register your team</h2>
+        <p>Fill this in and it goes straight to my inbox — nobody else sees it. I'll get back to you either way.</p>
+      </div>
+    </div>
+    <form class="register-box" action="https://formsubmit.co/nosteamcsgo88@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New team registration — GO:COUNTER MAJOR">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <div class="form-row">
+        <label for="reg-email">Your email</label>
+        <input type="email" id="reg-email" name="Email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-row">
+        <label for="reg-team">Team name</label>
+        <input type="text" id="reg-team" name="Team name" placeholder="e.g. Sqovaq Team" required>
+      </div>
+      <div class="form-row">
+        <label for="reg-players">Player names</label>
+        <textarea id="reg-players" name="Player names" rows="4" placeholder="One per line" required></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Send</button>
+    </form>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="logo" style="margin-bottom:10px;"><span class="dot"></span>GO:COUNTER MAJOR</div>
+        <p style="color:var(--ash-dim); font-size:14px; max-width:320px;">A community CS tournament. Run by fans, for fans.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h5>Tournament</h5>
+          <a href="#news">News</a>
+          <a href="#updates">Updates</a>
+          <a href="#event">Teams & rules</a>
+        </div>
+        <div class="foot-col">
+          <h5>Community</h5>
+          <a href="#">Discord</a>
+          <a href="#">Twitch</a>
+          <a href="#">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 GO:COUNTER MAJOR. Unofficial fan project.</span>
+      <span>Built with love for economy rounds</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.querySelector('.burger');
+  const navlinks = document.querySelector('.navlinks');
+  burger.addEventListener('click', () => {
+    const open = navlinks.style.display === 'flex';
+    navlinks.style.cssText = open ? '' : 'display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:#0B0D0A; padding:20px 28px; border-bottom:1px solid #3A3D30; gap:18px;';
+  });
+
+  const updates = {
+    v1: {
+      ver: 'v1.0',
+      date: 'Sep 13',
+      title: 'New rank system + Retakes mode',
+      body: `
+        <p>Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
+        <h4>New rank system</h4>
+        <p>Every player now gets tracked with a proper rank instead of a raw win count. It updates after every match and factors in round impact, not just the final score, so a close loss still counts for something.</p>
+        <h4>Retakes mode</h4>
+        <p>A full Retakes mode is now available for warmup and off-hours practice. Bomb is already planted, one side defends, one side retakes — quick rounds, no economy to manage.</p>
+        <p>Both are live right now on the servers. Bug reports and feedback go straight into Discord as always.</p>
+      `
+    }
+  };
+
+  const modal = document.getElementById('updateModal');
+  const modalVer = document.getElementById('modalVer');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDate = document.getElementById('modalDate');
+  const modalBody = document.getElementById('modalBody');
+  const modalClose = document.getElementById('modalClose');
+
+  document.querySelectorAll('.update-row[data-update]').forEach(row => {
+    row.addEventListener('click', () => {
+      const data = updates[row.dataset.update];
+      if (!data) return;
+      modalVer.textContent = data.ver;
+      modalTitle.textContent = data.title;
+      modalDate.textContent = data.date;
+      modalBody.innerHTML = data.body;
+      modal.classList.add('open');
+    });
+  });
+
+  function closeModal(){ modal.classList.remove('open'); }
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
