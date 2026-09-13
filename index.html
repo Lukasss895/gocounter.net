@@ -21,7 +21,6 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   
-  /* Vlastný CS:GO crosshair ako kurzor myši */
   body {
     background: var(--void);
     color: var(--ash);
@@ -31,7 +30,6 @@
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v8h8v2h-8v8h-2v-8H3v-2h8V2z' fill='%23C7D400' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") 12 12, auto;
   }
 
-  /* Vlastný kurzor aj pre klikacie elementy */
   a, button, input, textarea, .news-card {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v8h8v2h-8v8h-2v-8H3v-2h8V2z' fill='%23F1591E' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") 12 12, pointer;
   }
@@ -46,7 +44,6 @@
   a{color:inherit; text-decoration:none;}
   img{max-width:100%; display:block;}
  
-  /* background texture: faint grid + scanlines */
   .noise-grid{
     position:fixed; inset:0; pointer-events:none; z-index:0;
     background-image:
@@ -56,7 +53,6 @@
     mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
   }
  
-  /* tactical map blueprint background */
   .map-bg{
     position:fixed; inset:0; z-index:0; pointer-events:none;
     opacity:0.09;
@@ -66,7 +62,6 @@
  
   .wrap{max-width:1180px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
  
-  /* ---------- NAV ---------- */
   header{
     position:sticky; top:0; z-index:50;
     background:rgba(11,13,10,0.88);
@@ -99,7 +94,6 @@
   .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
   .burger span{width:24px; height:2px; background:var(--white);}
  
-  /* ---------- HERO ---------- */
   .hero{
     position:relative; padding:96px 0 70px;
     border-bottom:1px solid var(--steel);
@@ -141,7 +135,6 @@
   .hero h1 .spray{
     display:block;
     color:var(--toxic);
-    -webkit-text-stroke:0px;
     position:relative;
   }
   .hero-sub{
@@ -163,13 +156,11 @@
   }
   .btn-ghost:hover{border-color:var(--ash); color:var(--white);}
  
-  /* ---------- TICKER (prázdny, nehýbe sa) ---------- */
   .ticker-bar{
     background:var(--panel2); border-bottom:1px solid var(--steel);
     height: 14px;
   }
  
-  /* ---------- TRAILER ---------- */
   .trailer{border-bottom:1px solid var(--steel);}
   .trailer-frame{
     position:relative;
@@ -212,7 +203,6 @@
   .trailer-caption h3{font-size:17px; text-transform:none; color:var(--white); font-weight:600;}
   .trailer-caption span{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed';}
  
-  /* ---------- SECTION HEADS ---------- */
   section{padding:84px 0;}
   .sec-head{
     display:flex; align-items:flex-end; justify-content:space-between;
@@ -226,23 +216,57 @@
     letter-spacing:0.08em;
   }
  
-  /* ---------- NEWS ---------- */
   .news{border-top:1px solid var(--steel);}
   .news-grid{display:grid; grid-template-columns:1fr; max-width:640px;}
+  
   .news-card{
     background:var(--void); border:1px solid var(--steel); padding:28px; display:flex; flex-direction:column; gap:14px;
     transition:background 0.18s ease;
   }
   .news-card:hover{background:#101208;}
+  
+  /* --- EFEKT IBA PRE TÚTO KONKRÉTNU KARTU --- */
   .news-card .thumb{
-    width:100%; aspect-ratio:16/9;
-    background:
-      linear-gradient(135deg, rgba(241,89,30,0.22), rgba(199,212,0,0.08) 60%),
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 14px),
-      #14150F;
+    width:100%; 
+    aspect-ratio:16/9;
+    background: url('imageretakes.png') center/cover no-repeat;
     clip-path:polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
     position:relative;
+    overflow:hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   }
+
+  .news-card .thumb::before{
+    content:'';
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, transparent 40%, rgba(11,13,10,0.85) 100%);
+    z-index: 1;
+  }
+
+  .news-card .thumb::after{
+    content:'';
+    position:absolute; 
+    top:-100%; left:0; width:100%; height:100%;
+    background: linear-gradient(to bottom, transparent, rgba(199,212,0,0.3), transparent);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .news-card:hover .thumb {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(199,212,0,0.18);
+  }
+
+  .news-card:hover .thumb::after {
+    animation: scanline 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes scanline {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+  /* ------------------------------------------- */
+
   .news-date{
     font-family:'Barlow Condensed'; font-size:13px; color:var(--signal);
     letter-spacing:0.06em; text-transform:uppercase; font-weight:600;
@@ -250,7 +274,6 @@
   .news-card h3{font-size:24px; line-height:1.15; text-transform:none; font-weight:600;}
   .news-card p{font-size:14.5px; color:var(--ash-dim);}
  
-  /* ---------- UPDATE MODAL ---------- */
   .modal-overlay{
     position:fixed; inset:0; z-index:100;
     background:rgba(6,7,5,0.86);
@@ -283,7 +306,6 @@
   .modal-body{margin-top:24px; font-size:15.5px; color:var(--ash); display:flex; flex-direction:column; gap:14px;}
   .modal-body h4{font-family:'Barlow'; text-transform:none; color:var(--white); font-size:15.5px; font-weight:600; margin-top:6px;}
  
-  /* ---------- EVENT / BRACKET ---------- */
   .event{border-top:1px solid var(--steel);}
   .event-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
   .prize-box{
@@ -317,7 +339,6 @@
   .event-about h2{font-size:clamp(28px,4vw,38px); margin-bottom:18px;}
   .event-about p{color:var(--ash-dim); font-size:15.5px; margin-bottom:16px; max-width:480px;}
  
-  /* ---------- REGISTER FORM ---------- */
   .register{border-top:1px solid var(--steel); background:var(--panel2);}
   .register-box{
     max-width:560px;
@@ -340,7 +361,6 @@
   .form-row input::placeholder, .form-row textarea::placeholder{color:#5A5D50;}
   .register-box button{border:none; cursor:pointer; margin-top:6px;}
  
-  /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--steel); padding:50px 0 34px;}
   .foot-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; margin-bottom:36px;}
   .foot-links{display:flex; gap:48px; flex-wrap:wrap;}
@@ -352,7 +372,6 @@
     font-size:13px; color:var(--ash-dim); flex-wrap:wrap; gap:10px;
   }
  
-  /* ---------- RESPONSIVE ---------- */
   @media (max-width:860px){
     .navlinks{display:none;}
     .burger{display:flex;}
@@ -444,7 +463,7 @@
       <span class="sec-num">01 story — click to read</span>
     </div>
     <div class="news-grid">
-      <div class="news-card" data-update="v1">
+      <div class="news-card" data-update="v1" style="cursor:pointer;">
         <div class="thumb"></div>
         <span class="news-date">Sep 13</span>
         <h3>New rank system + Retakes mode</h3>
