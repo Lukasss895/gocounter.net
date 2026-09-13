@@ -47,6 +47,14 @@
     mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
   }
 
+  /* tactical map blueprint background */
+  .map-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    opacity:0.09;
+    mask-image:radial-gradient(ellipse 90% 75% at 50% 30%, black 35%, transparent 92%);
+  }
+  .map-bg svg{width:100%; height:100%;}
+
   .wrap{max-width:1180px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
 
   /* ---------- NAV ---------- */
@@ -410,6 +418,38 @@
 <body>
 
 <div class="noise-grid"></div>
+<div class="map-bg">
+  <svg viewBox="0 0 1600 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="var(--ash)" stroke-width="1.4">
+      <!-- rooms -->
+      <rect x="120" y="140" width="260" height="200"/>
+      <rect x="120" y="400" width="180" height="160"/>
+      <rect x="380" y="120" width="160" height="140"/>
+      <rect x="620" y="160" width="240" height="260"/>
+      <rect x="940" y="100" width="200" height="180"/>
+      <rect x="1220" y="150" width="220" height="220"/>
+      <rect x="1220" y="420" width="180" height="160"/>
+      <rect x="880" y="460" width="220" height="180"/>
+      <rect x="620" y="500" width="200" height="220"/>
+      <rect x="300" y="620" width="220" height="200"/>
+      <rect x="60" y="700" width="200" height="180"/>
+      <rect x="960" y="700" width="240" height="200"/>
+      <rect x="1260" y="680" width="200" height="220"/>
+      <rect x="540" y="780" width="220" height="180"/>
+      <!-- corridors -->
+      <path d="M380 220 H620 M540 340 V500 M860 260 H940 M1040 190 H1220 M1140 380 V460 M1000 280 H1220 M300 300 V400 M300 480 V620 M210 560 V700 M260 780 H540 M410 820 V960 M760 620 H880 M960 860 H1260 M1100 900 V1000 M1440 260 V420 M1400 540 H1260 M1310 640 V680"/>
+      <!-- site markers -->
+      <circle cx="1040" cy="270" r="46"/>
+      <circle cx="410" cy="880" r="46"/>
+      <!-- corner ticks -->
+      <path d="M40 40 H100 M40 40 V100 M1560 40 H1500 M1560 40 V100 M40 1060 H100 M40 1060 V1000 M1560 1060 H1500 M1560 1060 V1000"/>
+    </g>
+    <g fill="var(--signal)" font-family="'Oswald', sans-serif" font-size="34" font-weight="600" letter-spacing="2">
+      <text x="1020" y="280">A</text>
+      <text x="392" y="890">B</text>
+    </g>
+  </svg>
+</div>
 
 <header>
   <nav>
