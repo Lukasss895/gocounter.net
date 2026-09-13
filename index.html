@@ -36,7 +36,7 @@
   }
   a{color:inherit; text-decoration:none;}
   img{max-width:100%; display:block;}
-
+ 
   /* background texture: faint grid + scanlines */
   .noise-grid{
     position:fixed; inset:0; pointer-events:none; z-index:0;
@@ -46,7 +46,7 @@
     background-size:42px 42px;
     mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
   }
-
+ 
   /* tactical map blueprint background */
   .map-bg{
     position:fixed; inset:0; z-index:0; pointer-events:none;
@@ -54,9 +54,9 @@
     mask-image:radial-gradient(ellipse 90% 75% at 50% 30%, black 35%, transparent 92%);
   }
   .map-bg svg{width:100%; height:100%;}
-
+ 
   .wrap{max-width:1180px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
-
+ 
   /* ---------- NAV ---------- */
   header{
     position:sticky; top:0; z-index:50;
@@ -89,7 +89,7 @@
   }
   .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
   .burger span{width:24px; height:2px; background:var(--white);}
-
+ 
   /* ---------- HERO ---------- */
   .hero{
     position:relative; padding:96px 0 70px;
@@ -138,13 +138,6 @@
   .hero-sub{
     margin-top:26px; max-width:520px; font-size:17px; color:var(--ash-dim);
   }
-  .hero-meta{
-    display:flex; flex-wrap:wrap; gap:28px; margin-top:36px;
-    font-family:'Barlow Condensed', sans-serif; font-size:16px;
-  }
-  .hero-meta div{display:flex; flex-direction:column; gap:2px;}
-  .hero-meta span.label{font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ash-dim);}
-  .hero-meta span.val{font-size:19px; color:var(--white); font-weight:600;}
   .hero-actions{display:flex; gap:16px; margin-top:42px; flex-wrap:wrap;}
   .btn-primary{
     background:var(--signal); color:var(--void); font-weight:600; font-size:15px;
@@ -160,7 +153,7 @@
     transition:border-color 0.15s ease, color 0.15s ease;
   }
   .btn-ghost:hover{border-color:var(--ash); color:var(--white);}
-
+ 
   /* ---------- TICKER ---------- */
   .ticker-bar{
     background:var(--panel2); border-bottom:1px solid var(--steel);
@@ -180,7 +173,7 @@
     .ticker-track{animation:none;}
     .pulse{animation:none;}
   }
-
+ 
   /* ---------- TRAILER ---------- */
   .trailer{border-bottom:1px solid var(--steel);}
   .trailer-frame{
@@ -223,7 +216,7 @@
   }
   .trailer-caption h3{font-size:17px; text-transform:none; color:var(--white); font-weight:600;}
   .trailer-caption span{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed';}
-
+ 
   /* ---------- SECTION HEADS ---------- */
   section{padding:84px 0;}
   .sec-head{
@@ -237,17 +230,17 @@
     font-family:'Barlow Condensed'; font-size:14px; color:var(--ash-dim);
     letter-spacing:0.08em;
   }
-
+ 
   /* ---------- NEWS ---------- */
   .news{border-top:1px solid var(--steel);}
-  .news-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:1px; background:var(--steel);}
+  .news-grid{display:grid; grid-template-columns:1fr; max-width:640px;}
   .news-card{
-    background:var(--void); padding:28px; display:flex; flex-direction:column; gap:14px;
-    transition:background 0.18s ease;
+    background:var(--void); border:1px solid var(--steel); padding:28px; display:flex; flex-direction:column; gap:14px;
+    transition:background 0.18s ease; cursor:pointer;
   }
   .news-card:hover{background:#101208;}
   .news-card .thumb{
-    width:100%; aspect-ratio:16/10;
+    width:100%; aspect-ratio:16/9;
     background:
       linear-gradient(135deg, rgba(241,89,30,0.22), rgba(199,212,0,0.08) 60%),
       repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 14px),
@@ -255,51 +248,13 @@
     clip-path:polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
     position:relative;
   }
-  .news-card:nth-child(2) .thumb{
-    background:
-      linear-gradient(200deg, rgba(199,212,0,0.16), rgba(241,89,30,0.05) 65%),
-      repeating-linear-gradient(-45deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 16px),
-      #121309;
-  }
-  .news-card:nth-child(3) .thumb{
-    background:
-      linear-gradient(160deg, rgba(120,124,102,0.2), rgba(241,89,30,0.08) 70%),
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 18px),
-      #131409;
-  }
-  .news-card.feature .thumb{aspect-ratio:16/9;}
   .news-date{
     font-family:'Barlow Condensed'; font-size:13px; color:var(--signal);
     letter-spacing:0.06em; text-transform:uppercase; font-weight:600;
   }
-  .news-card h3{font-size:21px; line-height:1.15; text-transform:none; font-weight:600;}
-  .news-card.feature h3{font-size:27px;}
+  .news-card h3{font-size:24px; line-height:1.15; text-transform:none; font-weight:600;}
   .news-card p{font-size:14.5px; color:var(--ash-dim);}
-
-  /* ---------- UPDATES ---------- */
-  .updates{border-top:1px solid var(--steel); background:var(--panel2);}
-  .update-list{display:flex; flex-direction:column;}
-  .update-row{
-    display:grid; grid-template-columns:110px 1fr auto; gap:24px; align-items:center;
-    padding:22px 0; border-bottom:1px solid var(--steel);
-  }
-  .update-row:last-child{border-bottom:none;}
-  .update-ver{
-    font-family:'Barlow Condensed'; font-weight:600; font-size:15px;
-    color:var(--void); background:var(--toxic);
-    padding:5px 10px; text-align:center;
-    clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);
-    justify-self:start;
-  }
-  .update-text h4{
-    font-family:'Barlow'; font-weight:600; text-transform:none; color:var(--white);
-    font-size:16.5px; margin-bottom:3px;
-  }
-  .update-text p{font-size:14px; color:var(--ash-dim);}
-  .update-date{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed'; white-space:nowrap;}
-  .update-row[data-update]{cursor:pointer; transition:background 0.15s ease;}
-  .update-row[data-update]:hover{background:rgba(241,89,30,0.05);}
-
+ 
   /* ---------- UPDATE MODAL ---------- */
   .modal-overlay{
     position:fixed; inset:0; z-index:100;
@@ -322,11 +277,17 @@
     font-size:28px; line-height:1; cursor:pointer;
   }
   .modal-close:hover{color:var(--white);}
+  .update-ver{
+    font-family:'Barlow Condensed'; font-weight:600; font-size:15px;
+    color:var(--void); background:var(--toxic);
+    padding:5px 10px; display:inline-block;
+    clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);
+  }
   .modal-box h3{font-size:26px; text-transform:none; margin:16px 0 6px; font-weight:600;}
   .modal-date{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed';}
   .modal-body{margin-top:24px; font-size:15.5px; color:var(--ash); display:flex; flex-direction:column; gap:14px;}
   .modal-body h4{font-family:'Barlow'; text-transform:none; color:var(--white); font-size:15.5px; font-weight:600; margin-top:6px;}
-
+ 
   /* ---------- EVENT / BRACKET ---------- */
   .event{border-top:1px solid var(--steel);}
   .event-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
@@ -335,12 +296,9 @@
     clip-path:polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px));
     background:linear-gradient(160deg, rgba(241,89,30,0.06), transparent 60%);
   }
-  .prize-box .amount{font-size:52px; font-family:'Oswald'; color:var(--white); font-weight:700;}
-  .prize-box .cur{color:var(--signal);}
-  .prize-box .caption{font-size:14px; color:var(--ash-dim); margin-top:6px;}
-  .prize-box .reward-title{font-size:15px; color:var(--ash-dim); text-transform:uppercase; letter-spacing:0.06em; font-family:'Barlow Condensed'; font-weight:600;}
-  .prize-box .reward-name{font-size:34px; font-family:'Oswald'; color:var(--white); font-weight:700; margin-top:4px;}
-  .prize-box .reward-name span{color:var(--toxic);}
+  .reward-title{font-size:15px; color:var(--ash-dim); text-transform:uppercase; letter-spacing:0.06em; font-family:'Barlow Condensed'; font-weight:600;}
+  .reward-name{font-size:34px; font-family:'Oswald'; color:var(--white); font-weight:700; margin-top:4px;}
+  .reward-name span{color:var(--toxic);}
   .perk-list{margin-top:18px; display:flex; flex-direction:column; gap:10px;}
   .perk-list li{display:flex; gap:10px; font-size:14.5px; color:var(--ash); align-items:flex-start; list-style:none;}
   .perk-list li::before{content:'—'; color:var(--signal); flex-shrink:0;}
@@ -360,13 +318,13 @@
   }
   .team-row .name{color:var(--white); font-weight:500;}
   .team-row .status{margin-left:auto; font-size:12px; color:var(--ash-dim); font-family:'Barlow Condensed'; letter-spacing:0.05em;}
-
+ 
   .event-about h2{font-size:clamp(28px,4vw,38px); margin-bottom:18px;}
   .event-about p{color:var(--ash-dim); font-size:15.5px; margin-bottom:16px; max-width:480px;}
   .stat-row{display:flex; gap:36px; margin-top:32px; flex-wrap:wrap;}
   .stat-row div span.n{display:block; font-family:'Oswald'; font-size:34px; color:var(--white);}
   .stat-row div span.l{font-size:12.5px; color:var(--ash-dim); text-transform:uppercase; letter-spacing:0.06em;}
-
+ 
   /* ---------- REGISTER FORM ---------- */
   .register{border-top:1px solid var(--steel); background:var(--panel2);}
   .register-box{
@@ -375,7 +333,6 @@
     clip-path:polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
     background:linear-gradient(160deg, rgba(241,89,30,0.05), transparent 60%);
   }
-  .register-box p.note{color:var(--ash-dim); font-size:14.5px; margin:-6px 0 28px; max-width:440px;}
   .form-row{display:flex; flex-direction:column; gap:8px; margin-bottom:20px;}
   .form-row label{
     font-family:'Barlow Condensed'; font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
@@ -390,7 +347,7 @@
   .form-row input:focus, .form-row textarea:focus{outline:2px solid var(--signal); outline-offset:1px; border-color:var(--signal);}
   .form-row input::placeholder, .form-row textarea::placeholder{color:#5A5D50;}
   .register-box button{border:none; cursor:pointer; margin-top:6px;}
-
+ 
   /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--steel); padding:50px 0 34px;}
   .foot-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; margin-bottom:36px;}
@@ -402,26 +359,22 @@
     display:flex; justify-content:space-between; padding-top:24px; border-top:1px solid var(--steel);
     font-size:13px; color:var(--ash-dim); flex-wrap:wrap; gap:10px;
   }
-
+ 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width:860px){
     .navlinks{display:none;}
     .burger{display:flex;}
-    .news-grid{grid-template-columns:1fr;}
     .event-grid{grid-template-columns:1fr; gap:44px;}
-    .update-row{grid-template-columns:80px 1fr; row-gap:6px;}
-    .update-date{grid-column:2; }
   }
   :focus-visible{outline:2px solid var(--signal); outline-offset:2px;}
 </style>
 </head>
 <body>
-
+ 
 <div class="noise-grid"></div>
 <div class="map-bg">
   <svg viewBox="0 0 1600 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <g fill="none" stroke="var(--ash)" stroke-width="1.4">
-      <!-- rooms -->
       <rect x="120" y="140" width="260" height="200"/>
       <rect x="120" y="400" width="180" height="160"/>
       <rect x="380" y="120" width="160" height="140"/>
@@ -436,12 +389,9 @@
       <rect x="960" y="700" width="240" height="200"/>
       <rect x="1260" y="680" width="200" height="220"/>
       <rect x="540" y="780" width="220" height="180"/>
-      <!-- corridors -->
       <path d="M380 220 H620 M540 340 V500 M860 260 H940 M1040 190 H1220 M1140 380 V460 M1000 280 H1220 M300 300 V400 M300 480 V620 M210 560 V700 M260 780 H540 M410 820 V960 M760 620 H880 M960 860 H1260 M1100 900 V1000 M1440 260 V420 M1400 540 H1260 M1310 640 V680"/>
-      <!-- site markers -->
       <circle cx="1040" cy="270" r="46"/>
       <circle cx="410" cy="880" r="46"/>
-      <!-- corner ticks -->
       <path d="M40 40 H100 M40 40 V100 M1560 40 H1500 M1560 40 V100 M40 1060 H100 M40 1060 V1000 M1560 1060 H1500 M1560 1060 V1000"/>
     </g>
     <g fill="var(--signal)" font-family="'Oswald', sans-serif" font-size="34" font-weight="600" letter-spacing="2">
@@ -450,13 +400,12 @@
     </g>
   </svg>
 </div>
-
+ 
 <header>
   <nav>
     <div class="logo"><span class="dot"></span>GO:COUNTER MAJOR</div>
     <div class="navlinks">
       <a href="#news">News</a>
-      <a href="#updates">Updates</a>
       <a href="#event">Event</a>
       <a href="#register">Register</a>
       <a href="#footer">Contact</a>
@@ -465,24 +414,19 @@
     <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 </header>
-
+ 
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-tag"><span class="pulse"></span>Registration open</div>
     <h1>GO:COUNTER<span class="spray">MAJOR</span></h1>
     <p class="hero-sub">A community CS tournament with no sponsors, no polish — just whoever's got the guts to sign up, one map pool, and one night people will be talking about long after the server crashes.</p>
-    <div class="hero-meta">
-      <div><span class="label">Date</span><span class="val">Nov 15–16</span></div>
-      <div><span class="label">Format</span><span class="val">8 teams / BO3</span></div>
-      <div><span class="label">Venue</span><span class="val">Online only</span></div>
-    </div>
     <div class="hero-actions">
       <a href="#register" class="btn-primary">Register a team</a>
       <a href="#news" class="btn-ghost">What's new</a>
     </div>
   </div>
 </section>
-
+ 
 <div class="ticker-bar">
   <div class="ticker-track">
     <span>Patch 0.4 —</span>Fixed a bug with the overtime economy reset
@@ -495,7 +439,7 @@
     <span>Map —</span>Ancient added to the pool in place of Vertigo
   </div>
 </div>
-
+ 
 <section class="trailer">
   <div class="wrap" style="padding:60px 0;">
     <div class="trailer-frame">
@@ -508,61 +452,27 @@
     </div>
   </div>
 </section>
-
+ 
 <section class="news" id="news">
   <div class="wrap">
     <div class="sec-head">
       <div>
         <h2>News</h2>
-        <p>Ongoing updates from the run-up, qualifiers, and behind the scenes.</p>
+        <p>Latest updates and patch notes from the server setup.</p>
       </div>
-      <span class="sec-num">03 current stories</span>
+      <span class="sec-num">01 story — click to read</span>
     </div>
     <div class="news-grid">
-      <div class="news-card feature">
+      <div class="news-card" data-update="v1">
         <div class="thumb"></div>
-        <span class="news-date">September 8</span>
-        <h3>First team locked in: Sqovaq Team</h3>
-        <p>Sqovaq Team is officially our first confirmed roster. Registration is still open for everyone else.</p>
-      </div>
-      <div class="news-card">
-        <div class="thumb"></div>
-        <span class="news-date">September 2</span>
-        <h3>Sign-ups still open</h3>
-        <p>Only one slot filled so far — get your squad in before the pool fills up.</p>
-      </div>
-      <div class="news-card">
-        <div class="thumb"></div>
-        <span class="news-date">August 27</span>
-        <h3>Trailer dropping this week</h3>
-        <p>We're cutting the announcement trailer right now — should be live in a few days.</p>
+        <span class="news-date">Sep 13</span>
+        <h3>New rank system + Retakes mode</h3>
+        <p>GO:COUNTER now has its own rank system, plus a new Retakes mode. Click to read the full breakdown.</p>
       </div>
     </div>
   </div>
 </section>
-
-<section class="updates" id="updates">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Updates</h2>
-        <p>Changes to the rules, the format, and the tournament's tech setup.</p>
-      </div>
-      <span class="sec-num">changelog — click to read</span>
-    </div>
-    <div class="update-list">
-      <div class="update-row" data-update="v1">
-        <span class="update-ver">v1.0</span>
-        <div class="update-text">
-          <h4>New rank system + Retakes mode</h4>
-          <p>GO:COUNTER now has its own rank system, plus a new Retakes mode. Click to read the full breakdown.</p>
-        </div>
-        <span class="update-date">Sep 13</span>
-      </div>
-    </div>
-  </div>
-</section>
-
+ 
 <div class="modal-overlay" id="updateModal">
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
@@ -572,7 +482,7 @@
     <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
-
+ 
 <section class="event" id="event">
   <div class="wrap event-grid">
     <div class="event-about">
@@ -604,7 +514,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section class="register" id="register">
   <div class="wrap">
     <div class="sec-head" style="border-bottom:none;">
@@ -634,7 +544,7 @@
     </form>
   </div>
 </section>
-
+ 
 <footer id="footer">
   <div class="wrap">
     <div class="foot-top">
@@ -646,7 +556,6 @@
         <div class="foot-col">
           <h5>Tournament</h5>
           <a href="#news">News</a>
-          <a href="#updates">Updates</a>
           <a href="#event">Teams & rules</a>
         </div>
         <div class="foot-col">
@@ -663,7 +572,7 @@
     </div>
   </div>
 </footer>
-
+ 
 <script>
   const burger = document.querySelector('.burger');
   const navlinks = document.querySelector('.navlinks');
@@ -671,7 +580,7 @@
     const open = navlinks.style.display === 'flex';
     navlinks.style.cssText = open ? '' : 'display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:#0B0D0A; padding:20px 28px; border-bottom:1px solid #3A3D30; gap:18px;';
   });
-
+ 
   const updates = {
     v1: {
       ver: 'v1.0',
@@ -687,15 +596,15 @@
       `
     }
   };
-
+ 
   const modal = document.getElementById('updateModal');
   const modalVer = document.getElementById('modalVer');
   const modalTitle = document.getElementById('modalTitle');
   const modalDate = document.getElementById('modalDate');
   const modalBody = document.getElementById('modalBody');
   const modalClose = document.getElementById('modalClose');
-
-  document.querySelectorAll('.update-row[data-update]').forEach(row => {
+ 
+  document.querySelectorAll('.news-card[data-update]').forEach(row => {
     row.addEventListener('click', () => {
       const data = updates[row.dataset.update];
       if (!data) return;
@@ -706,12 +615,12 @@
       modal.classList.add('open');
     });
   });
-
+ 
   function closeModal(){ modal.classList.remove('open'); }
   modalClose.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 </script>
-
+ 
 </body>
 </html>
