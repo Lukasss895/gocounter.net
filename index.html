@@ -364,8 +364,9 @@
       <a href="#about">About</a>
       <a href="#news">Updates</a>
       <a href="#majors">Majors</a>
+      <a href="#register">Register Team</a>
+      <a href="#teamvote">Team Vote</a>
       <a href="#predictions">Predictions</a>
-      <a href="#support">Support</a>
     </div>
     <a href="https://www.twitch.tv/gocr_live" target="_blank" rel="noopener" class="nav-cta">Watch live</a>
     <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -463,9 +464,9 @@
     <div class="news-grid">
       <div class="news-card" data-update="v1" style="cursor:pointer;">
         <div class="thumb"></div>
-        <span class="news-date">Sep 9, 2026</span>
-        <h3>From bugged Steam to Nosteam</h3>
-        <p>From Shitty bugged Steam version to Nosteam with all skins from 2016 CS:GO. Click to read full patch notes.</p>
+        <span class="news-date">Sep 13</span>
+        <h3 id="newsTitle">New rank system + Retakes mode</h3>
+        <p id="newsDesc">Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
       </div>
     </div>
   </div>
@@ -475,26 +476,18 @@
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
     <span class="update-ver" id="modalVer">v1.0</span>
-    <h3 id="modalTitle">From bugged Steam to Nosteam</h3>
-    <span class="modal-date" id="modalDate">9.9.2026</span>
+    <h3 id="modalTitle">New rank system + Retakes mode</h3>
+    <span class="modal-date" id="modalDate">Sep 13</span>
     <div class="modal-body" id="modalBody">
-      <p>Here are the key changes included in this update:</p>
-      <p>- From Shitty bugged Steam version to Nosteam with all skins from 2016 CS:GO</p>
-      <p>- Fixed Rank System on Retakes</p>
-      <p>- Fixed FastDL From Radmin VPN FastDL to Github FastDL</p>
-      <p>- New version new maps</p>
-      <p>- On Steam have poor optimization (laggy on Windows 11) On Nosteam runs well</p>
-      <p>- Fixed bans and kick when you hacking or killing to much players</p>
-      <p>- From snd_mixahead 0.5 on steam now on nosteam 0.1 now you have 10ms delay</p>
-      <p>- Removed temporary GO:TV Because gotv crashed csgo server</p>
-      <p>- Fixed some bugs on Retakes</p>
-      <p>- On this version include Start Timeout</p>
-      <p>- Fixed Switcher from headphones to 2 Speaker etc.</p>
-      <p>- Fixed servers because on steam runs only on sv_lan 1 but now runs on your choose if you have 0 or 1</p>
-      <p>- Added new game modes: Retakes & Hide & Seek</p>
+      <p>Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
+      <h4>New rank system</h4>
+      <p>Every player now gets tracked with a proper rank instead of a raw win count. It updates after every match and factors in round impact, not just the final score, so a close loss still counts for something.</p>
+      <h4>Retakes mode</h4>
+      <p>A full Retakes mode is now available for warmup and off-hours practice. Bomb is already planted, one side defends, one side retakes — quick rounds, no economy to manage.</p>
+      <p>Both are live right now on the servers. Bug reports and feedback go straight into Discord as always.</p>
     </div>
   </div>
-</main>
+</div>
 
 <!-- MAJORS SECTION -->
 <section id="majors" style="border-top: 1px solid var(--steel);">
@@ -531,15 +524,96 @@
   </div>
 </section>
 
+<!-- REGISTER TEAM SECTION -->
+<section class="register" id="register">
+  <div class="wrap">
+    <div class="sec-head" style="border-bottom:none;">
+      <div>
+        <h2>Register your team</h2>
+        <p>Fill this in and it goes straight to my inbox — nobody else sees it. I'll get back to you either way.</p>
+      </div>
+      <span class="sec-num">06 / registration</span>
+    </div>
+    <form class="register-box" action="https://formsubmit.co/nosteamcsgo88@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New team registration — GO:COUNTER MAJOR">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_url" value="https://lukasss895.github.io/gocounter.net/">
+      <div class="form-row">
+        <label for="reg-email">Your email</label>
+        <input type="email" id="reg-email" name="Email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-row">
+        <label for="reg-team">Team name</label>
+        <input type="text" id="reg-team" name="Team name" placeholder="e.g. Sqovaq Team" required>
+      </div>
+      <div class="form-row">
+        <label for="reg-players">Player names</label>
+        <textarea id="reg-players" name="Player names" rows="4" placeholder="One per line" required></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Send</button>
+    </form>
+  </div>
+</section>
+
+<!-- TEAM VOTE SECTION (Zahlasovač tímov) -->
+<section id="teamvote" style="border-top: 1px solid var(--steel); background: var(--panel2);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Zahlasovač tímov / Team Vote</h2>
+        <p>Rozhodnite o účasť tímov v nadchádzajúcom turnaji.</p>
+      </div>
+      <span class="sec-num">07 / team vote</span>
+    </div>
+    <div class="custom-box" style="max-width: 800px;">
+      <h3 style="color:var(--white); margin-bottom:14px;">Stav potvrdenia tímov (Confirmed / Unconfirmed)</h3>
+      <p style="color:var(--ash-dim); margin-bottom:20px;">Tu môžeš sledovať, či sa tímy vyjadrili a potvrdili svoju účasť v zápasoch:</p>
+      
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Tím / Team</th>
+            <th>Status účasti</th>
+            <th>Poznámka</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Nostalgia Gaming</strong></td>
+            <td><span style="color: var(--toxic); font-weight: bold;">✔ Potvrdené (Confirmed)</span></td>
+            <td>Pripravení na 128-tick</td>
+          </tr>
+          <tr>
+            <td><strong>Ghetto Veterans</strong></td>
+            <td><span style="color: var(--toxic); font-weight: bold;">✔ Potvrdené (Confirmed)</span></td>
+            <td>Hrajú v plnej zostave</td>
+          </tr>
+          <tr>
+            <td><strong>CS:GO Legends</strong></td>
+            <td><span style="color: var(--signal); font-weight: bold;">❌ Nepotvrdené (Waiting)</span></td>
+            <td>Čaká sa na vyjadrenie</td>
+          </tr>
+          <tr>
+            <td><strong>Public Smashers</strong></td>
+            <td><span style="color: var(--signal); font-weight: bold;">❌ Nepotvrdené (Waiting)</span></td>
+            <td>Zatiaľ bez odpovede</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- PREDICTIONS SECTION -->
-<section id="predictions" style="border-top: 1px solid var(--steel); background: var(--panel2);">
+<section id="predictions" style="border-top: 1px solid var(--steel);">
   <div class="wrap">
     <div class="sec-head">
       <div>
         <h2>Radmin Major - Tipsters Hall of Fame</h2>
         <p>Submit predictions and battle for top spots.</p>
       </div>
-      <span class="sec-num">06 / predictions</span>
+      <span class="sec-num">08 / predictions</span>
     </div>
     <p style="color:var(--ash-dim); margin-bottom:20px;">> Submit your match outcome predictions using our official Google Form and battle for the top leaderboard spots!</p>
     
@@ -565,45 +639,6 @@
         <tr><td>5</td><td>--</td><td>--</td><td style="color: var(--ash-dim); font-style: italic;">Participant</td></tr>
       </tbody>
     </table>
-  </div>
-</section>
-
-<!-- SUPPORT SECTION -->
-<section id="support" style="border-top: 1px solid var(--steel);">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Private Support</h2>
-        <p>Report bugs or map errors securely.</p>
-      </div>
-      <span class="sec-num">07 / support</span>
-    </div>
-    <div class="register-box" style="max-width:640px;">
-      <p style="color:var(--ash-dim); font-size:14.5px; margin-bottom:20px;">Did you find a bug or a map error? Let me know here. It will be sent directly to my email and no one else will see it.</p>
-      <form action="https://formspree.io/f/xdenznzr" method="POST">
-        <div class="form-row">
-          <label>Your Name (Player):</label>
-          <input type="text" name="player_name" required placeholder="E.g. JohnDoe">
-        </div>
-        <div class="form-row">
-          <label>Your Email (if you want a reply):</label>
-          <input type="email" name="_replyto" placeholder="your@email.com">
-        </div>
-        <div class="form-row">
-          <label>Issue Category:</label>
-          <select name="category">
-            <option value="Bug">Server Bug</option>
-            <option value="Map Error">Map Error / Stuck</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label>Problem Description:</label>
-          <textarea name="message" rows="5" required placeholder="Describe what happened..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%; border:none;">Send Message</button>
-      </form>
-    </div>
   </div>
 </section>
  
