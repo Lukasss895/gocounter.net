@@ -365,8 +365,8 @@
       <a href="#news">Updates</a>
       <a href="#majors">Majors</a>
       <a href="#register">Register Team</a>
-      <a href="#teamvote">Team Vote</a>
       <a href="#predictions">Predictions</a>
+      <a href="#support">Support</a>
     </div>
     <a href="https://www.twitch.tv/gocr_live" target="_blank" rel="noopener" class="nav-cta">Watch live</a>
     <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -556,55 +556,6 @@
   </div>
 </section>
 
-<!-- TEAM VOTE SECTION (Zahlasovač tímov) -->
-<section id="teamvote" style="border-top: 1px solid var(--steel); background: var(--panel2);">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Zahlasovač tímov / Team Vote</h2>
-        <p>Rozhodnite o účasť tímov v nadchádzajúcom turnaji.</p>
-      </div>
-      <span class="sec-num">07 / team vote</span>
-    </div>
-    <div class="custom-box" style="max-width: 800px;">
-      <h3 style="color:var(--white); margin-bottom:14px;">Stav potvrdenia tímov (Confirmed / Unconfirmed)</h3>
-      <p style="color:var(--ash-dim); margin-bottom:20px;">Tu môžeš sledovať, či sa tímy vyjadrili a potvrdili svoju účasť v zápasoch:</p>
-      
-      <table class="custom-table">
-        <thead>
-          <tr>
-            <th>Tím / Team</th>
-            <th>Status účasti</th>
-            <th>Poznámka</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Nostalgia Gaming</strong></td>
-            <td><span style="color: var(--toxic); font-weight: bold;">✔ Potvrdené (Confirmed)</span></td>
-            <td>Pripravení na 128-tick</td>
-          </tr>
-          <tr>
-            <td><strong>Ghetto Veterans</strong></td>
-            <td><span style="color: var(--toxic); font-weight: bold;">✔ Potvrdené (Confirmed)</span></td>
-            <td>Hrajú v plnej zostave</td>
-          </tr>
-          <tr>
-            <td><strong>CS:GO Legends</strong></td>
-            <td><span style="color: var(--signal); font-weight: bold;">❌ Nepotvrdené (Waiting)</span></td>
-            <td>Čaká sa na vyjadrenie</td>
-          </tr>
-          <tr>
-            <td><strong>Public Smashers</strong></td>
-            <td><span style="color: var(--signal); font-weight: bold;">❌ Nepotvrdené (Waiting)</span></td>
-            <td>Zatiaľ bez odpovede</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
 <!-- PREDICTIONS SECTION -->
 <section id="predictions" style="border-top: 1px solid var(--steel);">
   <div class="wrap">
@@ -613,7 +564,7 @@
         <h2>Radmin Major - Tipsters Hall of Fame</h2>
         <p>Submit predictions and battle for top spots.</p>
       </div>
-      <span class="sec-num">08 / predictions</span>
+      <span class="sec-num">07 / predictions</span>
     </div>
     <p style="color:var(--ash-dim); margin-bottom:20px;">> Submit your match outcome predictions using our official Google Form and battle for the top leaderboard spots!</p>
     
@@ -639,6 +590,49 @@
         <tr><td>5</td><td>--</td><td>--</td><td style="color: var(--ash-dim); font-style: italic;">Participant</td></tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- SUPPORT SECTION -->
+<section id="support" style="border-top: 1px solid var(--steel); background: var(--panel2);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Private Support</h2>
+        <p>Report bugs or map errors securely.</p>
+      </div>
+      <span class="sec-num">08 / support</span>
+    </div>
+    <div class="register-box" style="max-width:640px;">
+      <p style="color:var(--ash-dim); font-size:14.5px; margin-bottom:20px;">Did you find a bug or a map error? Let me know here. It will be sent directly to my email and no one else will see it.</p>
+      <form action="https://formsubmit.co/nosteamcsgo88@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New support message — GO:COUNTER">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_url" value="https://lukasss895.github.io/gocounter.net/">
+        <div class="form-row">
+          <label>Your Name (Player):</label>
+          <input type="text" name="player_name" required placeholder="E.g. JohnDoe">
+        </div>
+        <div class="form-row">
+          <label>Your Email (if you want a reply):</label>
+          <input type="email" name="_replyto" placeholder="your@email.com">
+        </div>
+        <div class="form-row">
+          <label>Issue Category:</label>
+          <select name="category">
+            <option value="Bug">Server Bug</option>
+            <option value="Map Error">Map Error / Stuck</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Problem Description:</label>
+          <textarea name="message" rows="5" required placeholder="Describe what happened..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; border:none;">Send Message</button>
+      </form>
+    </div>
   </div>
 </section>
  
