@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GO:COUNTER MAJOR — Official Site</title>
+<title>GO:COUNTER - Official Site</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
@@ -79,7 +79,7 @@
     display:flex; align-items:center; gap:10px; white-space:nowrap;
   }
   .logo .dot{width:9px; height:9px; background:var(--signal); clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
-  .navlinks{display:flex; gap:34px; font-size:15px; font-weight:500;}
+  .navlinks{display:flex; gap:26px; font-size:14px; font-weight:500;}
   .navlinks a{color:var(--ash-dim); position:relative; padding:4px 0;}
   .navlinks a:hover{color:var(--white);}
   .navlinks a::after{
@@ -122,7 +122,7 @@
   }
   @keyframes pulse{
     0%{box-shadow:0 0 0 0 rgba(241,89,30,0.55);}
-    70%{box-shadow:0 0 0 8px rgba(241,89,30,0);}
+    70%{box-shadow:0 0 0 8px rgba(241,89,30,0); }
     100%{box-shadow:0 0 0 0 rgba(241,89,30,0);}
   }
   .hero h1{
@@ -161,48 +161,6 @@
     height: 14px;
   }
  
-  .trailer{border-bottom:1px solid var(--steel);}
-  .trailer-frame{
-    position:relative;
-    aspect-ratio:16/9;
-    background:#0E0F0A;
-    border:1px solid var(--steel);
-    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%);
-    display:flex; align-items:center; justify-content:center;
-    overflow:hidden;
-  }
-  .trailer-frame::before{
-    content:'';
-    position:absolute; inset:0;
-    background:
-      repeating-linear-gradient(115deg, rgba(199,212,0,0.05) 0 3px, transparent 3px 22px),
-      linear-gradient(200deg, rgba(241,89,30,0.10), transparent 55%);
-  }
-  .play-btn{
-    position:relative; z-index:1;
-    width:76px; height:76px; border-radius:50%;
-    border:2px solid var(--ash-dim);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .play-btn::after{
-    content:''; width:0; height:0;
-    border-top:13px solid transparent; border-bottom:13px solid transparent;
-    border-left:20px solid var(--ash-dim);
-    margin-left:5px;
-  }
-  .trailer-note{
-    position:absolute; z-index:1; top:18px; right:22px;
-    font-family:'Barlow Condensed'; font-size:14px; color:var(--toxic);
-    border:1px dashed var(--toxic); padding:6px 12px;
-    transform:rotate(2.5deg);
-  }
-  .trailer-caption{
-    display:flex; justify-content:space-between; align-items:baseline;
-    margin-top:16px; flex-wrap:wrap; gap:8px;
-  }
-  .trailer-caption h3{font-size:17px; text-transform:none; color:var(--white); font-weight:600;}
-  .trailer-caption span{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed';}
- 
   section{padding:84px 0;}
   .sec-head{
     display:flex; align-items:flex-end; justify-content:space-between;
@@ -225,7 +183,6 @@
   }
   .news-card:hover{background:#101208;}
   
-  /* --- EFEKT IBA PRE TÚTO KONKRÉTNU KARTU --- */
   .news-card .thumb{
     width:100%; 
     aspect-ratio:16/9;
@@ -265,7 +222,6 @@
     0% { top: -100%; }
     100% { top: 100%; }
   }
-  /* ------------------------------------------- */
 
   .news-date{
     font-family:'Barlow Condensed'; font-size:13px; color:var(--signal);
@@ -305,40 +261,29 @@
   .modal-date{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed';}
   .modal-body{margin-top:24px; font-size:15.5px; color:var(--ash); display:flex; flex-direction:column; gap:14px;}
   .modal-body h4{font-family:'Barlow'; text-transform:none; color:var(--white); font-size:15.5px; font-weight:600; margin-top:6px;}
- 
-  .event{border-top:1px solid var(--steel);}
-  .event-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
-  .prize-box{
-    border:1px solid var(--steel); padding:32px;
-    clip-path:polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px));
-    background:linear-gradient(160deg, rgba(241,89,30,0.06), transparent 60%);
+
+  .custom-section { border-top: 1px solid var(--steel); padding: 84px 0; }
+  .custom-box {
+    background: var(--panel2); border: 1px solid var(--steel); padding: 40px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    margin-bottom: 30px;
   }
-  .reward-title{font-size:15px; color:var(--ash-dim); text-transform:uppercase; letter-spacing:0.06em; font-family:'Barlow Condensed'; font-weight:600;}
-  .reward-name{font-size:34px; font-family:'Oswald'; color:var(--white); font-weight:700; margin-top:4px;}
-  .reward-name span{color:var(--toxic);}
-  .perk-list{margin-top:18px; display:flex; flex-direction:column; gap:10px;}
-  .perk-list li{display:flex; gap:10px; font-size:14.5px; color:var(--ash); align-items:flex-start; list-style:none;}
-  .perk-list li::before{content:'—'; color:var(--signal); flex-shrink:0;}
-  .team-list{margin-top:28px; display:flex; flex-direction:column; gap:0;}
-  .team-row{
-    display:flex; align-items:center; gap:16px; padding:13px 0;
-    border-bottom:1px solid var(--steel); font-size:15px;
+  .custom-table {
+    width: 100%; border-collapse: collapse; margin-top: 20px;
   }
-  .team-row .seed{
-    font-family:'Barlow Condensed'; color:var(--ash-dim); width:24px; font-size:14px;
+  .custom-table th, .custom-table td {
+    padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--steel);
+    font-size: 14.5px;
   }
-  .team-row .badge{
-    width:28px; height:28px; background:var(--panel2); border:1px solid var(--steel);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Oswald'; font-size:12px; color:var(--toxic);
-    clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%);
+  .custom-table th { color: var(--toxic); font-family: 'Oswald'; text-transform: uppercase; }
+  .custom-table tr:hover { background-color: rgba(199,212,0,0.03); }
+  
+  .server-box-item {
+    background: var(--void); border: 1px solid var(--steel); padding: 24px; margin-bottom: 20px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
   }
-  .team-row .name{color:var(--white); font-weight:500;}
-  .team-row .status{margin-left:auto; font-size:12px; color:var(--ash-dim); font-family:'Barlow Condensed'; letter-spacing:0.05em;}
- 
-  .event-about h2{font-size:clamp(28px,4vw,38px); margin-bottom:18px;}
-  .event-about p{color:var(--ash-dim); font-size:15.5px; margin-bottom:16px; max-width:480px;}
- 
+  .server-box-item code { background: rgba(0,0,0,0.5); padding: 4px 8px; color: var(--toxic); font-family: monospace; display: inline-block; margin-top: 6px; }
+
   .register{border-top:1px solid var(--steel); background:var(--panel2);}
   .register-box{
     max-width:560px;
@@ -351,15 +296,14 @@
     font-family:'Barlow Condensed'; font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
     color:var(--ash-dim); font-weight:600;
   }
-  .form-row input, .form-row textarea{
+  .form-row input, .form-row textarea, .form-row select{
     background:var(--void); border:1px solid var(--steel); color:var(--white);
     font-family:'Barlow'; font-size:15px; padding:12px 14px;
     clip-path:polygon(8px 0,100% 0,100% 100%,0 100%,0 8px);
     resize:vertical;
   }
-  .form-row input:focus, .form-row textarea:focus{outline:2px solid var(--signal); outline-offset:1px; border-color:var(--signal);}
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus{outline:2px solid var(--signal); outline-offset:1px; border-color:var(--signal);}
   .form-row input::placeholder, .form-row textarea::placeholder{color:#5A5D50;}
-  .register-box button{border:none; cursor:pointer; margin-top:6px;}
  
   footer{border-top:1px solid var(--steel); padding:50px 0 34px;}
   .foot-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; margin-bottom:36px;}
@@ -375,7 +319,6 @@
   @media (max-width:860px){
     .navlinks{display:none;}
     .burger{display:flex;}
-    .event-grid{grid-template-columns:1fr; gap:44px;}
   }
   :focus-visible{outline:2px solid var(--signal); outline-offset:2px;}
 </style>
@@ -414,12 +357,15 @@
  
 <header>
   <nav>
-    <div class="logo"><span class="dot"></span>GO:COUNTER MAJOR</div>
+    <div class="logo"><span class="dot"></span>GO:COUNTER - Official Site</div>
     <div class="navlinks">
-      <a href="#news">News</a>
-      <a href="#event">Event</a>
-      <a href="#register">Register</a>
-      <a href="#footer">Contact</a>
+      <a href="#servers">Servers</a>
+      <a href="#download">Download</a>
+      <a href="#about">About</a>
+      <a href="#news">Updates</a>
+      <a href="#majors">Majors</a>
+      <a href="#predictions">Predictions</a>
+      <a href="#support">Support</a>
     </div>
     <a href="https://www.twitch.tv/gocr_live" target="_blank" rel="noopener" class="nav-cta">Watch live</a>
     <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -428,27 +374,79 @@
  
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-tag"><span class="pulse"></span>Registration open</div>
-    <h1>GO:COUNTER<span class="spray">MAJOR</span></h1>
-    <p class="hero-sub">A community CS tournament with no sponsors, no polish — just whoever's got the guts to sign up, one map pool, and one night people will be talking about long after the server crashes.</p>
+    <div class="hero-tag"><span class="pulse"></span>Servers Online</div>
+    <h1>GO:COUNTER<span class="spray">OFFICIAL SITE</span></h1>
+    <p class="hero-sub">Experience Counter-Strike exactly how it was back in 2016 – with classic engine, 128-tick rate servers, custom plugins, and retro community atmosphere.</p>
     <div class="hero-actions">
-      <a href="#register" class="btn-primary">Register a team</a>
-      <a href="#news" class="btn-ghost">What's new</a>
+      <a href="#servers" class="btn-primary">View Servers</a>
+      <a href="#download" class="btn-ghost">Download Client</a>
     </div>
   </div>
 </section>
  
 <div class="ticker-bar"></div>
- 
-<section class="trailer">
-  <div class="wrap" style="padding:60px 0;">
-    <div class="trailer-frame">
-      <div class="trailer-note">footage coming soon</div>
-      <div class="play-btn"></div>
+
+<!-- SERVERS SECTION -->
+<section id="servers">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Servers</h2>
+        <p>Active game servers running on 128-tick rate.</p>
+      </div>
+      <span class="sec-num">01 / server portal</span>
     </div>
-    <div class="trailer-caption">
-      <h3>Announcement trailer</h3>
-      <span>Uploading in a few days — check back or watch for it on Discord</span>
+    <div style="max-width: 800px;">
+      <div class="server-box-item">
+        <h3>1. GO:COUNTER 128-TICK</h3>
+        <p>> Game IP: <code>connect 147.185.221.215:45492</code></p><br>
+        <p>> GO:TV: <code>connect 147.185.221.214:20379</code></p>
+      </div>
+      <div class="server-box-item">
+        <h3>2. GO:COUNTER Retakes</h3>
+        <p>> Game IP: <code>connect 147.185.221.231:27068</code></p>
+      </div>
+      <div class="server-box-item">
+        <h3>3. GO:COUNTER HIDE&SEEK</h3>
+        <p>> Game IP: <code>connect 147.185.221.231:42183</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD SECTION -->
+<section id="download" style="border-top: 1px solid var(--steel); background: var(--panel2);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Download</h2>
+        <p>Required clients and launchers for playing on our servers.</p>
+      </div>
+      <span class="sec-num">02 / files</span>
+    </div>
+    <div class="custom-box" style="max-width: 700px;">
+      <h3 style="color:var(--white); margin-bottom:14px;">Required Downloads</h3>
+      <p style="margin-bottom:16px;"><strong>Game Client (CS:GO Build)</strong><br>
+      You must use this exact client version to avoid incompatibility issues:</p>
+      <a href="https://drive.usercontent.google.com/download?id=1EEsF_eieGHUnyYZYG5_lNrFbG5Kr7OzI&export=download&authuser=0" target="_blank" class="btn-primary" style="display:inline-block; margin-bottom:24px;">Download GO:COUNTER Client</a>
+      <p><a href="https://drive.google.com/file/d/1459utTHmn_h6gzyLKx7E5zSGO7dj9Mx2/view?usp=sharing" target="_blank" class="btn-ghost" style="display:inline-block;">Download NOSTEAM LAUNCHER</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" style="border-top: 1px solid var(--steel);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>About Project</h2>
+        <p>The core vision behind the community project.</p>
+      </div>
+      <span class="sec-num">03 / info</span>
+    </div>
+    <div style="max-width: 700px; font-size: 16px; color: var(--ash-dim); display: flex; flex-direction: column; gap: 16px;">
+      <p>This project was created out of pure retro nostalgia for players who want to experience Counter-Strike exactly how it was back in 2016 – without unnecessary modern updates, including the classic engine, SourceMod plugins, a fully functional RTV map voting system, and GOTV for future majors.</p>
+      <p>Brought to you by the community. Have fun! 🦾</p>
     </div>
   </div>
 </section>
@@ -457,17 +455,17 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <h2>News</h2>
-        <p>Latest updates and patch notes from the server setup.</p>
+        <h2>Updates & Patch Notes</h2>
+        <p>Latest changes from the server setup.</p>
       </div>
-      <span class="sec-num">01 story — click to read</span>
+      <span class="sec-num">04 / changelog</span>
     </div>
     <div class="news-grid">
       <div class="news-card" data-update="v1" style="cursor:pointer;">
         <div class="thumb"></div>
-        <span class="news-date">Sep 13</span>
-        <h3>New rank system + Retakes mode</h3>
-        <p>GO:COUNTER now has its own rank system, plus a new Retakes mode. Click to read the full breakdown.</p>
+        <span class="news-date">Sep 9, 2026</span>
+        <h3>From bugged Steam to Nosteam</h3>
+        <p>From Shitty bugged Steam version to Nosteam with all skins from 2016 CS:GO. Click to read full patch notes.</p>
       </div>
     </div>
   </div>
@@ -477,67 +475,134 @@
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
     <span class="update-ver" id="modalVer">v1.0</span>
-    <h3 id="modalTitle">New rank system + Retakes mode</h3>
-    <span class="modal-date" id="modalDate">Sep 13</span>
-    <div class="modal-body" id="modalBody"></div>
+    <h3 id="modalTitle">From bugged Steam to Nosteam</h3>
+    <span class="modal-date" id="modalDate">9.9.2026</span>
+    <div class="modal-body" id="modalBody">
+      <p>Here are the key changes included in this update:</p>
+      <p>- From Shitty bugged Steam version to Nosteam with all skins from 2016 CS:GO</p>
+      <p>- Fixed Rank System on Retakes</p>
+      <p>- Fixed FastDL From Radmin VPN FastDL to Github FastDL</p>
+      <p>- New version new maps</p>
+      <p>- On Steam have poor optimization (laggy on Windows 11) On Nosteam runs well</p>
+      <p>- Fixed bans and kick when you hacking or killing to much players</p>
+      <p>- From snd_mixahead 0.5 on steam now on nosteam 0.1 now you have 10ms delay</p>
+      <p>- Removed temporary GO:TV Because gotv crashed csgo server</p>
+      <p>- Fixed some bugs on Retakes</p>
+      <p>- On this version include Start Timeout</p>
+      <p>- Fixed Switcher from headphones to 2 Speaker etc.</p>
+      <p>- Fixed servers because on steam runs only on sv_lan 1 but now runs on your choose if you have 0 or 1</p>
+    </div>
   </div>
 </div>
- 
-<section class="event" id="event">
-  <div class="wrap event-grid">
-    <div class="event-about">
-      <h2>About the event</h2>
-      <p>GO:COUNTER MAJOR started on one Discord server during a slow summer. No sponsor, no production company — just a group of people who wanted to see who in the community could actually play under pressure.</p>
-      <p>Squads are trickling in — Retakes and the new rank system are already live in the community mod, finals are streamed online with full casting, no venue, no travel needed.</p>
-      
-      <div class="prize-box" style="margin-top:36px;">
-        <div class="reward-title">Winner takes</div>
-        <div class="reward-name">2 weeks <span>VIP</span></div>
-        <ul class="perk-list">
-          <li>Colored name + VIP tag on the Discord</li>
-          <li>Guaranteed slot in the next tournament — no qualifiers needed</li>
-          <li>Pick the map for your first match next time</li>
-          <li>Your clip featured in the next trailer</li>
-        </ul>
+
+<!-- MAJORS SECTION -->
+<section id="majors" style="border-top: 1px solid var(--steel);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Classic Majors & Matches (2026)</h2>
+        <p>Community tournaments and live streaming details.</p>
       </div>
+      <span class="sec-num">05 / majors</span>
     </div>
-    <div>
-      <h2 style="font-size:24px; margin-bottom:6px;">Confirmed teams</h2>
-      <p style="color:var(--ash-dim); font-size:14px; margin-bottom:10px;">First one's in — more slots still open.</p>
-      <div class="team-list">
-        <div class="team-row"><span class="seed">01</span><span class="badge">SQ</span><span class="name">Sqovaq Team</span><span class="status">Confirmed</span></div>
-      </div>
+    <div style="max-width:800px; color:var(--ash-dim); margin-bottom:30px; font-size:15.5px; display:flex; flex-direction:column; gap:10px;">
+      <p>> If this server reaches 10 players, we’ll vote on whether to hold a CS:GO tournament; there will also be a commentator for the audience likely speaking a mix of Slovak and English so it should be fun for you.</p>
+      <p>> Streamed live through our GO-TV server or archived for your viewing pleasure.</p>
     </div>
+    <table class="custom-table" style="max-width:800px;">
+      <thead>
+        <tr>
+          <th>Tournament</th>
+          <th>Teams</th>
+          <th>Winner</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ghetto Major 2016 (2026)</td>
+          <td>??</td>
+          <td><span style="color: var(--toxic);">??</span></td>
+          <td>??</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
- 
-<section class="register" id="register">
+
+<!-- PREDICTIONS SECTION -->
+<section id="predictions" style="border-top: 1px solid var(--steel); background: var(--panel2);">
   <div class="wrap">
-    <div class="sec-head" style="border-bottom:none;">
+    <div class="sec-head">
       <div>
-        <h2>Register your team</h2>
-        <p>Fill this in and it goes straight to my inbox — nobody else sees it. I'll get back to you either way.</p>
+        <h2>Radmin Major - Tipsters Hall of Fame</h2>
+        <p>Submit predictions and battle for top spots.</p>
       </div>
+      <span class="sec-num">06 / predictions</span>
     </div>
-    <form class="register-box" action="https://formsubmit.co/nosteamcsgo88@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New team registration — GO:COUNTER MAJOR">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_url" value="https://lukasss895.github.io/gocounter.net/">
-      <div class="form-row">
-        <label for="reg-email">Your email</label>
-        <input type="email" id="reg-email" name="Email" placeholder="you@example.com" required>
+    <p style="color:var(--ash-dim); margin-bottom:20px;">> Submit your match outcome predictions using our official Google Form and battle for the top leaderboard spots!</p>
+    
+    <div style="margin: 25px 0;">
+      <a href="SEM_LINK_NA_GOOGLE_FORMULAR" target="_blank" class="btn-primary">👉 OPEN PREDICTION FORM 👈</a>
+    </div>
+
+    <h3 style="color: var(--white); margin-top: 40px; font-size:22px;">Leaderboard (Top Tipsters)</h3>
+    <table class="custom-table" style="max-width:800px;">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Tipster Name</th>
+          <th>Correct Tips</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="color: #ffd700; font-weight: bold;">1</td><td>--</td><td>--</td><td>👑 King of Predictions</td></tr>
+        <tr><td style="color: #c0c0c0; font-weight: bold;">2</td><td>--</td><td>--</td><td>🥈 Elite Tipster</td></tr>
+        <tr><td style="color: #cd7f32; font-weight: bold;">3</td><td>--</td><td>--</td><td>🥉 Pro Tipster</td></tr>
+        <tr><td>4</td><td>--</td><td>--</td><td style="color: var(--ash-dim); font-style: italic;">Participant</td></tr>
+        <tr><td>5</td><td>--</td><td>--</td><td style="color: var(--ash-dim); font-style: italic;">Participant</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SUPPORT SECTION -->
+<section id="support" style="border-top: 1px solid var(--steel);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Private Support</h2>
+        <p>Report bugs or map errors securely.</p>
       </div>
-      <div class="form-row">
-        <label for="reg-team">Team name</label>
-        <input type="text" id="reg-team" name="Team name" placeholder="e.g. Sqovaq Team" required>
-      </div>
-      <div class="form-row">
-        <label for="reg-players">Player names</label>
-        <textarea id="reg-players" name="Player names" rows="4" placeholder="One per line" required></textarea>
-      </div>
-      <button type="submit" class="btn-primary">Send</button>
-    </form>
+      <span class="sec-num">07 / support</span>
+    </div>
+    <div class="register-box" style="max-width:640px;">
+      <p style="color:var(--ash-dim); font-size:14.5px; margin-bottom:20px;">Did you find a bug or a map error? Let me know here. It will be sent directly to my email and no one else will see it.</p>
+      <form action="https://formspree.io/f/xdenznzr" method="POST">
+        <div class="form-row">
+          <label>Your Name (Player):</label>
+          <input type="text" name="player_name" required placeholder="E.g. JohnDoe">
+        </div>
+        <div class="form-row">
+          <label>Your Email (if you want a reply):</label>
+          <input type="email" name="_replyto" placeholder="your@email.com">
+        </div>
+        <div class="form-row">
+          <label>Issue Category:</label>
+          <select name="category">
+            <option value="Bug">Server Bug</option>
+            <option value="Map Error">Map Error / Stuck</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Problem Description:</label>
+          <textarea name="message" rows="5" required placeholder="Describe what happened..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; border:none;">Send Message</button>
+      </form>
+    </div>
   </div>
 </section>
  
@@ -545,14 +610,15 @@
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="logo" style="margin-bottom:10px;"><span class="dot"></span>GO:COUNTER MAJOR</div>
-        <p style="color:var(--ash-dim); font-size:14px; max-width:320px;">A community CS tournament. Run by fans, for fans.</p>
+        <div class="logo" style="margin-bottom:10px;"><span class="dot"></span>GO:COUNTER - Official Site</div>
+        <p style="color:var(--ash-dim); font-size:14px; max-width:320px;">A community CS server network. Run by fans, for fans.</p>
       </div>
       <div class="foot-links">
         <div class="foot-col">
-          <h5>Tournament</h5>
-          <a href="#news">News</a>
-          <a href="#event">Teams & rules</a>
+          <h5>Portal</h5>
+          <a href="#servers">Servers</a>
+          <a href="#download">Download</a>
+          <a href="#news">Updates</a>
         </div>
         <div class="foot-col">
           <h5>Community</h5>
@@ -563,8 +629,8 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 GO:COUNTER MAJOR. Unofficial fan project.</span>
-      <span>Built with love for economy rounds</span>
+      <span>© 2026 GO:COUNTER - Official Site. Unofficial fan project.</span>
+      <span>Built with love for 2016 CS:GO</span>
     </div>
   </div>
 </footer>
@@ -577,44 +643,19 @@
     navlinks.style.cssText = open ? '' : 'display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:#0B0D0A; padding:20px 28px; border-bottom:1px solid #3A3D30; gap:18px;';
   });
  
-  const updates = {
-    v1: {
-      ver: 'v1.0',
-      date: 'Sep 13',
-      title: 'New rank system + Retakes mode',
-      body: `
-        <p>Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
-        <h4>New rank system</h4>
-        <p>Every player now gets tracked with a proper rank instead of a raw win count. It updates after every match and factors in round impact, not just the final score, so a close loss still counts for something.</p>
-        <h4>Retakes mode</h4>
-        <p>A full Retakes mode is now available for warmup and off-hours practice. Bomb is already planted, one side defends, one side retakes — quick rounds, no economy to manage.</p>
-        <p>Both are live right now on the servers. Bug reports and feedback go straight into Discord as always.</p>
-      `
-    }
-  };
- 
   const modal = document.getElementById('updateModal');
-  const modalVer = document.getElementById('modalVer');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalDate = document.getElementById('modalDate');
-  const modalBody = document.getElementById('modalBody');
   const modalClose = document.getElementById('modalClose');
+  const newsCard = document.querySelector('.news-card[data-update]');
  
-  document.querySelectorAll('.news-card[data-update]').forEach(row => {
-    row.addEventListener('click', () => {
-      const data = updates[row.dataset.update];
-      if (!data) return;
-      modalVer.textContent = data.ver;
-      modalTitle.textContent = data.title;
-      modalDate.textContent = data.date;
-      modalBody.innerHTML = data.body;
+  if(newsCard) {
+    newsCard.addEventListener('click', () => {
       modal.classList.add('open');
     });
-  });
+  }
  
   function closeModal(){ modal.classList.remove('open'); }
-  modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  if(modalClose) modalClose.addEventListener('click', closeModal);
+  if(modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 </script>
  
