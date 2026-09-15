@@ -175,7 +175,7 @@
   }
  
   .news{border-top:1px solid var(--steel);}
-  .news-grid{display:grid; grid-template-columns:1fr; max-width:640px;}
+  .news-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; max-width:100%;}
   
   .news-card{
     background:var(--void); border:1px solid var(--steel); padding:28px; display:flex; flex-direction:column; gap:14px;
@@ -186,12 +186,17 @@
   .news-card .thumb{
     width:100%; 
     aspect-ratio:16/9;
-    background: url('steamnosteam.png') center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     clip-path:polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
     position:relative;
     overflow:hidden;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   }
+
+  .news-card .thumb.img-hybrid { background-image: url('steamnosteam.png'); }
+  .news-card .thumb.img-retakes { background-image: url('imageretakes.png'); }
 
   .news-card .thumb::before{
     content:'';
@@ -462,11 +467,19 @@
       <span class="sec-num">04 / changelog</span>
     </div>
     <div class="news-grid">
+      <!-- 1. NOVINKA: Steam & Non-Steam -->
+      <div class="news-card" data-update="v2" style="cursor:pointer;">
+        <div class="thumb img-hybrid"></div>
+        <span class="news-date">15.9.2026</span>
+        <h3>Steam & Non-Steam Compatibility</h3>
+        <p>Successfully launched the hybrid server mode, allowing players using both official Steam and Non-Steam versions to connect seamlessly.</p>
+      </div>
+      <!-- 2. PÔVODNÁ AKTUALIZÁCIA: Ranks + Retakes -->
       <div class="news-card" data-update="v1" style="cursor:pointer;">
-        <div class="thumb"></div>
-        <span class="news-date">Recent Update</span>
-        <h3 id="newsTitle">Steam & Non-Steam Compatibility</h3>
-        <p id="newsDesc">Successfully launched the hybrid server mode, allowing players using both official Steam and Non-Steam versions to connect seamlessly.</p>
+        <div class="thumb img-retakes"></div>
+        <span class="news-date">Sep 13</span>
+        <h3>New rank system + Retakes mode</h3>
+        <p>Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
       </div>
     </div>
   </div>
@@ -476,16 +489,10 @@
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
     <span class="update-ver" id="modalVer">v1.1</span>
-    <h3 id="modalTitle">Server Update (Steam & Non-Steam Compatibility)</h3>
-    <span class="modal-date" id="modalDate">Recent Update</span>
+    <h3 id="modalTitle">Server Update</h3>
+    <span class="modal-date" id="modalDate">15.9.2026</span>
     <div class="modal-body" id="modalBody">
-      <p>Major milestone reached for our community infrastructure to ensure everyone can join the action.</p>
-      <h4>Steam & Non-Steam Support</h4>
-      <p>Successfully launched the hybrid server mode, allowing players using both the official Steam client and Non-Steam versions to connect seamlessly (Non-Steam profiles operate in a basic mode without external Steam API bindings).</p>
-      <h4>Lobby Stability</h4>
-      <p>Fixed and stabilized server connections using a custom lobby reservation fix.</p>
-      <h4>Log Optimization</h4>
-      <p>Ongoing cleanup of SourceMod error logs to keep the console completely clean.</p>
+      <!-- Dynamický obsah sa prepne cez JS podľa kliknutia -->
     </div>
   </div>
 </div>
@@ -676,13 +683,55 @@
  
   const modal = document.getElementById('updateModal');
   const modalClose = document.getElementById('modalClose');
-  const newsCard = document.querySelector('.news-card[data-update]');
- 
-  if(newsCard) {
-    newsCard.addEventListener('click', () => {
-      modal.classList.add('open');
+  const modalVer = document.getElementById('modalVer');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDate = document.getElementById('modalDate');
+  const modalBody = document.getElementById('modalBody');
+
+  // Údaje pre modálne okná
+  const updatesData = {
+    'v2': {
+      ver: 'v1.1',
+      title: 'Server Update (Steam & Non-Steam Compatibility)',
+      date: '15.9.2026',
+      body: `
+        <p>Major milestone reached for our community infrastructure to ensure everyone can join the action.</p>
+        <h4>Steam & Non-Steam Support</h4>
+        <p>Successfully launched the hybrid server mode, allowing players using both the official Steam client and Non-Steam versions to connect seamlessly (Non-Steam profiles operate in a basic mode without external Steam API bindings).</p>
+        <h4>Lobby Stability</h4>
+        <p>Fixed and stabilized server connections using a custom lobby reservation fix.</p>
+        <h4>Log Optimization</h4>
+        <p>Ongoing cleanup of SourceMod error logs to keep the console completely clean.</p>
+      `
+    },
+    'v1': {
+      ver: 'v1.0',
+      title: 'New rank system + Retakes mode',
+      date: 'Sep 13',
+      body: `
+        <p>Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
+        <h4>New rank system</h4>
+        <p>Every player now gets tracked with a proper rank instead of a raw win count. It updates after every match and factors in round impact, not just the final score, so a close loss still counts for something.</p>
+        <h4>Retakes mode</h4>
+        <p>A full Retakes mode is now available for warmup and off-hours practice. Bomb is already planted, one side defends, one side retakes — quick rounds, no economy to manage.</p>
+        <p>Both are live right now on the servers. Bug reports and feedback go straight into Discord as always.</p>
+      `
+    }
+  };
+
+  document.querySelectorAll('.news-card[data-update]').forEach(card => {
+    card.addEventListener('click', () => {
+      const updateKey = card.getAttribute('data-update');
+      const data = updatesData[updateKey];
+      if(data) {
+        modalVer.textContent = data.ver;
+        modalTitle.textContent = data.title;
+        modalDate.textContent = data.date;
+        modalBody.innerHTML = data.body;
+        modal.classList.add('open');
+      }
     });
-  }
+  });
  
   function closeModal(){ modal.classList.remove('open'); }
   if(modalClose) modalClose.addEventListener('click', closeModal);
