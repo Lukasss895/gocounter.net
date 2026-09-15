@@ -186,7 +186,7 @@
   .news-card .thumb{
     width:100%; 
     aspect-ratio:16/9;
-    background: url('imageretakes.png') center/cover no-repeat;
+    background: url('steamnosteam.png') center/cover no-repeat;
     clip-path:polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
     position:relative;
     overflow:hidden;
@@ -464,9 +464,9 @@
     <div class="news-grid">
       <div class="news-card" data-update="v1" style="cursor:pointer;">
         <div class="thumb"></div>
-        <span class="news-date">Sep 13</span>
-        <h3 id="newsTitle">New rank system + Retakes mode</h3>
-        <p id="newsDesc">Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
+        <span class="news-date">Recent Update</span>
+        <h3 id="newsTitle">Steam & Non-Steam Compatibility</h3>
+        <p id="newsDesc">Successfully launched the hybrid server mode, allowing players using both official Steam and Non-Steam versions to connect seamlessly.</p>
       </div>
     </div>
   </div>
@@ -475,16 +475,17 @@
 <div class="modal-overlay" id="updateModal">
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-    <span class="update-ver" id="modalVer">v1.0</span>
-    <h3 id="modalTitle">New rank system + Retakes mode</h3>
-    <span class="modal-date" id="modalDate">Sep 13</span>
+    <span class="update-ver" id="modalVer">v1.1</span>
+    <h3 id="modalTitle">Server Update (Steam & Non-Steam Compatibility)</h3>
+    <span class="modal-date" id="modalDate">Recent Update</span>
     <div class="modal-body" id="modalBody">
-      <p>Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
-      <h4>New rank system</h4>
-      <p>Every player now gets tracked with a proper rank instead of a raw win count. It updates after every match and factors in round impact, not just the final score, so a close loss still counts for something.</p>
-      <h4>Retakes mode</h4>
-      <p>A full Retakes mode is now available for warmup and off-hours practice. Bomb is already planted, one side defends, one side retakes — quick rounds, no economy to manage.</p>
-      <p>Both are live right now on the servers. Bug reports and feedback go straight into Discord as always.</p>
+      <p>Major milestone reached for our community infrastructure to ensure everyone can join the action.</p>
+      <h4>Steam & Non-Steam Support</h4>
+      <p>Successfully launched the hybrid server mode, allowing players using both the official Steam client and Non-Steam versions to connect seamlessly (Non-Steam profiles operate in a basic mode without external Steam API bindings).</p>
+      <h4>Lobby Stability</h4>
+      <p>Fixed and stabilized server connections using a custom lobby reservation fix.</p>
+      <h4>Log Optimization</h4>
+      <p>Ongoing cleanup of SourceMod error logs to keep the console completely clean.</p>
     </div>
   </div>
 </div>
