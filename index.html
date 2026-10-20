@@ -22,7 +22,8 @@
   html{scroll-behavior:smooth;}
   
   body {
-    background-image: url('csgo.jpg');
+    background-color: #0b0f14;
+    background-image: linear-gradient(rgba(11, 15, 20, 0.85), rgba(11, 15, 20, 0.95)), url('csgo.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -79,7 +80,6 @@
   }
   .logo .dot{width:9px; height:9px; background:var(--signal); clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
   
-  /* Úplne čistá navigačná lišta */
   .navlinks{display:flex; gap:26px; font-size:14px; font-weight:500; align-items:center;}
   .navlinks a{color:var(--ash-dim); position:relative; padding:4px 0;}
   .navlinks a:hover{color:var(--white);}
@@ -194,6 +194,7 @@
     clip-path:polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
     position:relative;
     overflow:hidden;
+    background-color: var(--panel2);
   }
 
   .news-card .thumb.img-hybrid { background-image: url('steamnosteam.png'); }
@@ -333,7 +334,6 @@
 <header>
   <nav>
     <div class="logo"><span class="dot"></span>GO:COUNTER</div>
-    <!-- ČISTÁ NAVIGAČNÁ LIŠTA (ODSTRÁNENÉ NADBYTOČNÉ POLOŽKY) -->
     <div class="navlinks">
       <a href="#servers">Servers</a>
       <a href="#news">Updates</a>
