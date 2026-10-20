@@ -80,7 +80,7 @@
   }
   .logo .dot{width:9px; height:9px; background:var(--signal); clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
   
-  .navlinks{display:flex; gap:26px; font-size:14px; font-weight:500; align-items:center;}
+  .navlinks{display:flex; gap:20px; font-size:13.5px; font-weight:500; align-items:center; flex-wrap:wrap;}
   .navlinks a{color:var(--ash-dim); position:relative; padding:4px 0;}
   .navlinks a:hover{color:var(--white);}
   .navlinks a::after{
@@ -292,7 +292,7 @@
     font-size:13px; color:var(--ash-dim); flex-wrap:wrap; gap:10px;
   }
  
-  @media (max-width:900px){
+  @media (max-width:1150px){
     .navlinks{display:none;}
     .burger{display:flex;}
   }
@@ -334,9 +334,17 @@
 <header>
   <nav>
     <div class="logo"><span class="dot"></span>GO:COUNTER</div>
+    <!-- NAVIGAČNÁ LIŠTA VŠETKY ODKAZY + CROSSHAIR -->
     <div class="navlinks">
       <a href="#servers">Servers</a>
+      <a href="#download">Download</a>
+      <a href="#about">About</a>
       <a href="#news">Updates</a>
+      <a href="#majors">Majors</a>
+      <a href="#inventory" style="color: var(--toxic);">Inventory</a>
+      <a href="#register">Register Team</a>
+      <a href="#predictions">Predictions</a>
+      <a href="https://csgocrosshairs.com/generator/" target="_blank">Crosshair</a>
       <a href="#support">Support</a>
     </div>
     <div style="display: flex; gap: 10px; align-items: center;" id="auth-nav-container">
@@ -699,9 +707,10 @@
       body: `
         <p>Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
         <h4>New rank system</h4>
-        <p>Every player now gets tracked with a proper rank instead of a raw win count.</p>
+        <p>Every player now gets tracked with a proper rank instead of a raw win count. It updates after every match and factors in round impact, not just the final score, so a close loss still counts for something.</p>
         <h4>Retakes mode</h4>
-        <p>A full Retakes mode is now available for warmup and off-hours practice.</p>
+        <p>A full Retakes mode is now available for warmup and off-hours practice. Bomb is already planted, one side defends, one side retakes — quick rounds, no economy to manage.</p>
+        <p>Both are live right now on the servers. Bug reports and feedback go straight into Discord as always.</p>
       `
     }
   };
