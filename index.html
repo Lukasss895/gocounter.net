@@ -31,11 +31,6 @@
     font-family: 'Barlow', sans-serif;
     line-height: 1.5;
     overflow-x: hidden;
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v8h8v2h-8v8h-2v-8H3v-2h8V2z' fill='%23C7D400' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") 12 12, auto;
-  }
-
-  a, button, input, textarea, .news-card {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v8h8v2h-8v8h-2v-8H3v-2h8V2z' fill='%23F1591E' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") 12 12, pointer;
   }
 
   h1,h2,h3,.display{
@@ -83,7 +78,9 @@
     display:flex; align-items:center; gap:10px; white-space:nowrap;
   }
   .logo .dot{width:9px; height:9px; background:var(--signal); clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
-  .navlinks{display:flex; gap:26px; font-size:14px; font-weight:500;}
+  
+  /* Úplne čistá navigačná lišta */
+  .navlinks{display:flex; gap:26px; font-size:14px; font-weight:500; align-items:center;}
   .navlinks a{color:var(--ash-dim); position:relative; padding:4px 0;}
   .navlinks a:hover{color:var(--white);}
   .navlinks a::after{
@@ -91,6 +88,7 @@
     background:var(--signal); transition:width 0.2s ease;
   }
   .navlinks a:hover::after{width:100%;}
+  
   .nav-cta{
     background:var(--signal); color:var(--void); font-weight:600; font-size:14px;
     padding:10px 20px; clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
@@ -183,7 +181,7 @@
   
   .news-card{
     background:var(--void); border:1px solid var(--steel); padding:28px; display:flex; flex-direction:column; gap:14px;
-    transition:background 0.18s ease;
+    transition:background 0.18s ease; cursor:pointer;
   }
   .news-card:hover{background:#101208;}
   
@@ -196,41 +194,10 @@
     clip-path:polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
     position:relative;
     overflow:hidden;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   }
 
   .news-card .thumb.img-hybrid { background-image: url('steamnosteam.png'); }
   .news-card .thumb.img-retakes { background-image: url('imageretakes.png'); }
-
-  .news-card .thumb::before{
-    content:'';
-    position:absolute; inset:0;
-    background: linear-gradient(180deg, transparent 40%, rgba(11,13,10,0.85) 100%);
-    z-index: 1;
-  }
-
-  .news-card .thumb::after{
-    content:'';
-    position:absolute; 
-    top:-100%; left:0; width:100%; height:100%;
-    background: linear-gradient(to bottom, transparent, rgba(199,212,0,0.3), transparent);
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .news-card:hover .thumb {
-    transform: scale(1.02);
-    box-shadow: 0 8px 30px rgba(199,212,0,0.18);
-  }
-
-  .news-card:hover .thumb::after {
-    animation: scanline 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  }
-
-  @keyframes scanline {
-    0% { top: -100%; }
-    100% { top: 100%; }
-  }
 
   .news-date{
     font-family:'Barlow Condensed'; font-size:13px; color:var(--signal);
@@ -271,7 +238,6 @@
   .modal-body{margin-top:24px; font-size:15.5px; color:var(--ash); display:flex; flex-direction:column; gap:14px;}
   .modal-body h4{font-family:'Barlow'; text-transform:none; color:var(--white); font-size:15.5px; font-weight:600; margin-top:6px;}
 
-  .custom-section { border-top: 1px solid var(--steel); padding: 84px 0; }
   .custom-box {
     background: var(--panel2); border: 1px solid var(--steel); padding: 40px;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
@@ -325,7 +291,7 @@
     font-size:13px; color:var(--ash-dim); flex-wrap:wrap; gap:10px;
   }
  
-  @media (max-width:860px){
+  @media (max-width:900px){
     .navlinks{display:none;}
     .burger{display:flex;}
   }
@@ -366,16 +332,11 @@
  
 <header>
   <nav>
-    <div class="logo"><span class="dot"></span>GO:COUNTER - Official Site</div>
+    <div class="logo"><span class="dot"></span>GO:COUNTER</div>
+    <!-- ČISTÁ NAVIGAČNÁ LIŠTA (ODSTRÁNENÉ NADBYTOČNÉ POLOŽKY) -->
     <div class="navlinks">
       <a href="#servers">Servers</a>
-      <a href="#download">Download</a>
-      <a href="#about">About</a>
       <a href="#news">Updates</a>
-      <a href="#majors">Majors</a>
-      <a href="#inventory" style="color: var(--toxic);">Inventory</a>
-      <a href="#register">Register Team</a>
-      <a href="#predictions">Predictions</a>
       <a href="#support">Support</a>
     </div>
     <div style="display: flex; gap: 10px; align-items: center;" id="auth-nav-container">
@@ -499,15 +460,13 @@
       <span class="sec-num">04 / changelog</span>
     </div>
     <div class="news-grid">
-      <!-- 1. NOVINKA: Steam & Non-Steam -->
-      <div class="news-card" data-update="v2" style="cursor:pointer;">
+      <div class="news-card" data-update="v2">
         <div class="thumb img-hybrid"></div>
         <span class="news-date">15.9.2026</span>
         <h3>Steam & Non-Steam Compatibility</h3>
         <p>Successfully launched the hybrid server mode, allowing players using both official Steam and Non-Steam versions to connect seamlessly.</p>
       </div>
-      <!-- 2. PÔVODNÁ AKTUALIZÁCIA: Ranks + Retakes -->
-      <div class="news-card" data-update="v1" style="cursor:pointer;">
+      <div class="news-card" data-update="v1">
         <div class="thumb img-retakes"></div>
         <span class="news-date">Sep 13</span>
         <h3>New rank system + Retakes mode</h3>
@@ -678,7 +637,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="logo" style="margin-bottom:10px;"><span class="dot"></span>GO:COUNTER - Official Site</div>
+        <div class="logo" style="margin-bottom:10px;"><span class="dot"></span>GO:COUNTER</div>
         <p style="color:var(--ash-dim); font-size:14px; max-width:320px;">Made For Nostalgia and CS:GO Community</p>
       </div>
       <div class="foot-links">
@@ -726,7 +685,7 @@
       body: `
         <p>Major milestone reached for our community infrastructure to ensure everyone can join the action.</p>
         <h4>Steam & Non-Steam Support</h4>
-        <p>Successfully launched the hybrid server mode, allowing players using both the official Steam client and Non-Steam versions to connect seamlessly (Non-Steam profiles operate in a basic mode without external Steam API bindings).</p>
+        <p>Successfully launched the hybrid server mode, allowing players using both the official Steam client and Non-Steam versions to connect seamlessly.</p>
         <h4>Lobby Stability</h4>
         <p>Fixed and stabilized server connections using a custom lobby reservation fix.</p>
         <h4>Log Optimization</h4>
@@ -740,10 +699,9 @@
       body: `
         <p>Two changes landed in the community mod today — both requested by pretty much everyone in the Discord since day one.</p>
         <h4>New rank system</h4>
-        <p>Every player now gets tracked with a proper rank instead of a raw win count. It updates after every match and factors in round impact, not just the final score, so a close loss still counts for something.</p>
+        <p>Every player now gets tracked with a proper rank instead of a raw win count.</p>
         <h4>Retakes mode</h4>
-        <p>A full Retakes mode is now available for warmup and off-hours practice. Bomb is already planted, one side defends, one side retakes — quick rounds, no economy to manage.</p>
-        <p>Both are live right now on the servers. Bug reports and feedback go straight into Discord as always.</p>
+        <p>A full Retakes mode is now available for warmup and off-hours practice.</p>
       `
     }
   };
@@ -767,7 +725,6 @@
   if(modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-  // Steam OpenID spracovanie
   window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const claimedId = urlParams.get('openid.claimed_id');
