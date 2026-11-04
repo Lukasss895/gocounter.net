@@ -387,14 +387,10 @@
       <a href="#about">About</a>
       <a href="#news">Updates</a>
       <a href="#majors">Majors</a>
-      <a href="#inventory" style="color: var(--toxic);">Inventory</a>
       <a href="#register">Register Team</a>
       <a href="#support">Support</a>
     </div>
-    <div style="display: flex; gap: 10px; align-items: center;" id="auth-nav-container">
-      <a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=https://lukasss895.github.io/gocounter.net/&openid.realm=https://lukasss895.github.io/gocounter.net/&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="btn-ghost" style="padding: 9px 14px; font-size: 13px; border-color: var(--signal); color: var(--white);">
-        Sign in via Steam
-      </a>
+    <div>
       <a href="https://www.twitch.tv/gocr_live" target="_blank" rel="noopener" class="nav-cta">Watch live</a>
     </div>
     <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -475,28 +471,6 @@
     <div style="max-width: 700px; font-size: 16px; color: var(--ash-dim); display: flex; flex-direction: column; gap: 16px;">
       <p>This project was created out of pure retro nostalgia for players who want to experience Counter-Strike exactly how it was back in 2016 – featuring Wildfire operations feel, classic engine, SourceMod plugins, a fully functional RTV map voting system, and GOTV for future majors.</p>
       <p>Brought to you by the community. Have fun! 🦾</p>
-    </div>
-  </div>
-</section>
- 
-<!-- INVENTORY SECTION -->
-<section id="inventory" style="border-top: 1px solid var(--steel); background: var(--void);">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Virtual Inventory</h2>
-        <p>Manage your custom knives, gloves and weapon skins.</p>
-      </div>
-      <span class="sec-num">03.5 / skins</span>
-    </div>
-    <div class="custom-box" style="max-width: 800px; text-align: center; padding: 50px 20px;" id="inventory-content">
-      <h3 style="color: var(--white); margin-bottom: 12px; font-size: 24px;">Link your Steam Account</h3>
-      <p style="color: var(--ash-dim); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
-        Sign in via Steam OpenID to load your profile, sync your custom loadout, and apply skins directly to your game client.
-      </p>
-      <a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=https://lukasss895.github.io/gocounter.net/&openid.realm=https://lukasss895.github.io/gocounter.net/&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="btn-primary" style="display:inline-block; background: #1b2838; color: #ffffff; border: 1px solid #2a475e;">
-        🔐 Sign in with Steam ID
-      </a>
     </div>
   </div>
 </section>
@@ -789,46 +763,6 @@
   if(modalClose) modalClose.addEventListener('click', closeModal);
   if(modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-  window.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const claimedId = urlParams.get('openid.claimed_id');
-
-    if (claimedId) {
-      const match = claimedId.match(/\/id\/([0-9]{17,25})/);
-      if (match && match[1]) {
-        localStorage.setItem('gocounter_steamid', match[1]);
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-    }
-
-    const savedSteamId = localStorage.getItem('gocounter_steamid');
-    const authContainer = document.getElementById('auth-nav-container');
-    const inventoryBox = document.getElementById('inventory-content');
-
-    if (savedSteamId) {
-      if (authContainer) {
-        authContainer.innerHTML = `
-          <a href="#" id="logout-btn" class="btn-ghost" style="padding: 9px 14px; font-size: 13px; border-color: var(--toxic); color: var(--white);">
-            Logout (${savedSteamId.slice(-4)})
-          </a>
-        `;
-        document.getElementById('logout-btn').addEventListener('click', (e) => {
-          e.preventDefault();
-          localStorage.removeItem('gocounter_steamid');
-          window.location.reload();
-        });
-      }
-
-      if (inventoryBox) {
-        inventoryBox.innerHTML = `
-          <h3 style="color: var(--white); margin-bottom: 12px; font-size: 24px;">Welcome, authenticated player!</h3>
-          <p style="color: var(--toxic); margin-bottom: 24px; font-family: monospace;">SteamID64: ${savedSteamId}</p>
-          <p style="color: var(--ash-dim); margin-bottom: 20px;">Your virtual skin loadout interface is ready to be configured.</p>
-        `;
-      }
-    }
-  });
 </script>
  
 </body>
