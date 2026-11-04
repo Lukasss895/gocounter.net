@@ -104,12 +104,29 @@
   }
   .navlinks a:hover::after{width:100%;}
   
-  .nav-cta{
-    background:var(--signal); color:var(--void); font-weight:600; font-size:14px;
-    padding:10px 20px; clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
-    transition: background 0.2s, transform 0.2s;
+  /* --- UPRAVENÉ TLAČIDLÁ: MIX ORANŽOVEJ A TOXIC ZELENEJ --- */
+  .nav-cta, .btn-primary{
+    background: linear-gradient(135deg, var(--signal), var(--toxic)) !important;
+    color: var(--void) !important; 
+    font-weight: 700; 
+    font-size: 14px;
+    padding: 10px 22px; 
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 0 15px rgba(241, 89, 30, 0.35);
+    display: inline-block;
+    border: none;
   }
-  .nav-cta:hover { background: #ff6a2d; transform: translateY(-1px); }
+  .btn-primary {
+    font-size: 15px;
+    padding: 14px 28px;
+    clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  }
+  .nav-cta:hover, .btn-primary:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(199, 212, 0, 0.5);
+  }
 
   .burger{display:none; flex-direction:column; gap:5px; background:none; border:none;}
   .burger span{width:26px; height:2px; background:var(--signal); box-shadow: 0 0 5px var(--signal);}
@@ -165,21 +182,13 @@
   }
   .hero-actions{display:flex; gap:16px; margin-top:42px; flex-wrap:wrap;}
   
-  .btn-primary{
-    background:var(--signal); color:var(--void); font-weight:700; font-size:15px;
-    padding:14px 28px; clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
-    transition:transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-    display:inline-block;
-    box-shadow: 0 0 15px rgba(241,89,30,0.4);
-  }
-  .btn-primary:hover{background:#ff6b2b; transform:translateY(-2px); box-shadow: 0 0 25px rgba(241,89,30,0.7);}
-  
   .btn-ghost{
     border:1px solid var(--signal-dim); color:var(--ash);
     background: rgba(241, 89, 30, 0.03);
     padding:14px 28px; clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
     font-weight:600; font-size:15px;
     transition:border-color 0.15s ease, color 0.15s ease, background 0.15s;
+    display: inline-block;
   }
   .btn-ghost:hover{border-color:var(--signal); color:var(--white); background: rgba(241, 89, 30, 0.1);}
  
