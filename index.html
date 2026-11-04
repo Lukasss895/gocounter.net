@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GO:COUNTER - Official Site</title>
+<title>GO:COUNTER 2016 Wildfire - Official Site</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --void:#0B0D0A;
-    --panel2:#191C14;
-    --steel:#3A3D30;
+    --void:#070906;
+    --panel2:#121510;
+    --steel:#2c3024;
     --ash:#C9CBC0;
     --ash-dim:#8B8E80;
-    --signal:#F1591E;
+    --signal:#F1591E;       /* Wildfire Orange */
     --signal-dim:#7A2E0F;
-    --toxic:#C7D400;
+    --toxic:#C7D400;        /* Wildfire Lime / Toxic */
     --white:#F4F5EE;
+    --wildfire-glow: rgba(241, 89, 30, 0.25);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   
   body {
-    background-color: #0b0f14;
-    background-image: linear-gradient(rgba(11, 15, 20, 0.85), rgba(11, 15, 20, 0.95)), url('csgo.jpg');
+    background-color: var(--void);
+    background-image: linear-gradient(rgba(7, 9, 6, 0.9), rgba(7, 9, 6, 0.96)), url('csgo.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -37,7 +38,7 @@
   h1,h2,h3,.display{
     font-family:'Oswald', sans-serif;
     text-transform:uppercase;
-    letter-spacing:0.01em;
+    letter-spacing:0.02em;
     color:var(--white);
     font-weight:600;
   }
@@ -47,15 +48,15 @@
   .noise-grid{
     position:fixed; inset:0; pointer-events:none; z-index:0;
     background-image:
-      linear-gradient(rgba(201,203,192,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,203,192,0.035) 1px, transparent 1px);
-    background-size:42px 42px;
+      linear-gradient(rgba(241,89,30,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241,89,30,0.025) 1px, transparent 1px);
+    background-size:48px 48px;
     mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
   }
  
   .map-bg{
     position:fixed; inset:0; z-index:0; pointer-events:none;
-    opacity:0.09;
+    opacity:0.07;
     mask-image:radial-gradient(ellipse 90% 75% at 50% 30%, black 35%, transparent 92%);
   }
   .map-bg svg{width:100%; height:100%;}
@@ -64,24 +65,29 @@
  
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(11,13,10,0.88);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--steel);
+    background:rgba(7,9,6,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--signal-dim);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   }
   nav{
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 28px; max-width:1180px; margin:0 auto;
+    padding:14px 28px; max-width:1180px; margin:0 auto;
   }
   .logo{
     font-family:'Oswald', sans-serif;
-    font-size:19px; font-weight:700; letter-spacing:0.01em;
+    font-size:20px; font-weight:700; letter-spacing:0.03em;
     color:var(--white);
     display:flex; align-items:center; gap:10px; white-space:nowrap;
   }
-  .logo .dot{width:9px; height:9px; background:var(--signal); clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
+  .logo .dot{
+    width:10px; height:10px; background:var(--signal); 
+    clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+    box-shadow: 0 0 10px var(--signal);
+  }
   
-  .navlinks{display:flex; gap:20px; font-size:13.5px; font-weight:500; align-items:center; flex-wrap:wrap;}
-  .navlinks a{color:var(--ash-dim); position:relative; padding:4px 0;}
+  .navlinks{display:flex; gap:18px; font-size:13.5px; font-weight:500; align-items:center; flex-wrap:wrap;}
+  .navlinks a{color:var(--ash-dim); position:relative; padding:4px 0; transition:color 0.2s;}
   .navlinks a:hover{color:var(--white);}
   .navlinks a::after{
     content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px;
@@ -92,75 +98,87 @@
   .nav-cta{
     background:var(--signal); color:var(--void); font-weight:600; font-size:14px;
     padding:10px 20px; clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+    transition: background 0.2s, transform 0.2s;
   }
+  .nav-cta:hover { background: #ff6a2d; transform: translateY(-1px); }
+
   .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
-  .burger span{width:24px; height:2px; background:var(--white);}
+  .burger span{width:26px; height:2px; background:var(--signal); box-shadow: 0 0 5px var(--signal);}
  
   .hero{
-    position:relative; padding:96px 0 70px;
+    position:relative; padding:110px 0 80px;
     border-bottom:1px solid var(--steel);
     overflow:hidden;
   }
   .hero::before{
     content:'';
-    position:absolute; top:-20%; right:-10%; width:60%; height:140%;
-    background:radial-gradient(ellipse at center, rgba(241,89,30,0.14), transparent 65%);
+    position:absolute; top:-10%; right:-5%; width:55%; height:130%;
+    background:radial-gradient(ellipse at center, rgba(241,89,30,0.18), transparent 70%);
     z-index:0;
   }
   .hero-inner{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 28px;}
   .hero-tag{
     display:inline-flex; align-items:center; gap:8px;
     font-family:'Barlow Condensed', sans-serif;
-    font-size:14px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+    font-size:14px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
     color:var(--signal); border:1px solid var(--signal-dim);
+    background: rgba(241, 89, 30, 0.08);
     padding:6px 14px; margin-bottom:26px;
     clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
     transform:rotate(-1deg);
   }
   .hero-tag .pulse{
     width:7px; height:7px; border-radius:50%; background:var(--signal);
-    box-shadow:0 0 0 0 rgba(241,89,30,0.6);
+    box-shadow:0 0 0 0 rgba(241,89,30,0.8);
     animation:pulse 1.8s infinite;
   }
   @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(241,89,30,0.55);}
-    70%{box-shadow:0 0 0 8px rgba(241,89,30,0); }
+    0%{box-shadow:0 0 0 0 rgba(241,89,30,0.8);}
+    70%{box-shadow:0 0 0 10px rgba(241,89,30,0); }
     100%{box-shadow:0 0 0 0 rgba(241,89,30,0);}
   }
   .hero h1{
-    font-size:clamp(44px, 7.4vw, 88px);
-    line-height:0.94;
+    font-size:clamp(46px, 7.5vw, 92px);
+    line-height:0.92;
     letter-spacing:-0.01em;
-    max-width:900px;
+    max-width:950px;
     position:relative;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.8);
   }
   .hero h1 .spray{
     display:block;
     color:var(--toxic);
-    position:relative;
+    text-shadow: 0 0 25px rgba(199,212,0,0.3);
+    margin-top: 5px;
   }
   .hero-sub{
-    margin-top:26px; max-width:520px; font-size:17px; color:var(--ash-dim);
+    margin-top:26px; max-width:560px; font-size:17.5px; color:var(--ash-dim);
   }
   .hero-actions{display:flex; gap:16px; margin-top:42px; flex-wrap:wrap;}
+  
   .btn-primary{
-    background:var(--signal); color:var(--void); font-weight:600; font-size:15px;
+    background:var(--signal); color:var(--void); font-weight:700; font-size:15px;
     padding:14px 28px; clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
-    transition:transform 0.15s ease, background 0.15s ease;
+    transition:transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
     display:inline-block;
+    box-shadow: 0 0 15px rgba(241,89,30,0.4);
   }
-  .btn-primary:hover{background:#ff6b2b; transform:translateY(-1px);}
+  .btn-primary:hover{background:#ff6b2b; transform:translateY(-2px); box-shadow: 0 0 25px rgba(241,89,30,0.7);}
+  
   .btn-ghost{
-    border:1px solid var(--steel); color:var(--ash);
+    border:1px solid var(--signal-dim); color:var(--ash);
+    background: rgba(241, 89, 30, 0.03);
     padding:14px 28px; clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
     font-weight:600; font-size:15px;
-    transition:border-color 0.15s ease, color 0.15s ease;
+    transition:border-color 0.15s ease, color 0.15s ease, background 0.15s;
   }
-  .btn-ghost:hover{border-color:var(--ash); color:var(--white);}
+  .btn-ghost:hover{border-color:var(--signal); color:var(--white); background: rgba(241, 89, 30, 0.1);}
  
   .ticker-bar{
     background:var(--panel2); border-bottom:1px solid var(--steel);
     height: 14px;
+    background-image: linear-gradient(90deg, var(--signal-dim), var(--void), var(--toxic));
+    opacity: 0.8;
   }
  
   section{padding:84px 0;}
@@ -168,22 +186,33 @@
     display:flex; align-items:flex-end; justify-content:space-between;
     margin-bottom:44px; gap:24px; flex-wrap:wrap;
     border-bottom:1px solid var(--steel); padding-bottom:20px;
+    position: relative;
   }
-  .sec-head h2{font-size:clamp(30px,4vw,42px); letter-spacing:0.01em;}
-  .sec-head p{color:var(--ash-dim); font-size:15px; max-width:360px;}
+  .sec-head::after {
+    content:''; position: absolute; bottom: -1px; left: 0; width: 80px; height: 2px;
+    background: var(--signal);
+  }
+  .sec-head h2{font-size:clamp(30px,4vw,42px); letter-spacing:0.02em;}
+  .sec-head p{color:var(--ash-dim); font-size:15px; max-width:380px;}
   .sec-num{
-    font-family:'Barlow Condensed'; font-size:14px; color:var(--ash-dim);
-    letter-spacing:0.08em;
+    font-family:'Barlow Condensed'; font-size:14px; color:var(--signal);
+    letter-spacing:0.1em; font-weight: 600;
   }
  
-  .news{border-top:1px solid var(--steel);}
-  .news-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; max-width:100%;}
+  .news{border-top:1px solid var(--steel); background: var(--panel2);}
+  .news-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; max-width:100%;}
   
   .news-card{
     background:var(--void); border:1px solid var(--steel); padding:28px; display:flex; flex-direction:column; gap:14px;
-    transition:background 0.18s ease; cursor:pointer;
+    transition:all 0.2s ease; cursor:pointer;
+    position: relative;
   }
-  .news-card:hover{background:#101208;}
+  .news-card:hover{
+    background:#0f130b; 
+    border-color: var(--signal);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  }
   
   .news-card .thumb{
     width:100%; 
@@ -195,29 +224,31 @@
     position:relative;
     overflow:hidden;
     background-color: var(--panel2);
+    border: 1px solid var(--steel);
   }
 
   .news-card .thumb.img-hybrid { background-image: url('steamnosteam.png'); }
   .news-card .thumb.img-retakes { background-image: url('imageretakes.png'); }
 
   .news-date{
-    font-family:'Barlow Condensed'; font-size:13px; color:var(--signal);
-    letter-spacing:0.06em; text-transform:uppercase; font-weight:600;
+    font-family:'Barlow Condensed'; font-size:13px; color:var(--toxic);
+    letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
   }
   .news-card h3{font-size:24px; line-height:1.15; text-transform:none; font-weight:600;}
   .news-card p{font-size:14.5px; color:var(--ash-dim);}
  
   .modal-overlay{
     position:fixed; inset:0; z-index:100;
-    background:rgba(6,7,5,0.86);
-    backdrop-filter:blur(3px);
+    background:rgba(5,7,4,0.88);
+    backdrop-filter:blur(5px);
     display:none; align-items:center; justify-content:center;
     padding:24px;
   }
   .modal-overlay.open{display:flex;}
   .modal-box{
     position:relative;
-    background:var(--void); border:1px solid var(--steel);
+    background:var(--void); border:1px solid var(--signal);
+    box-shadow: 0 0 40px rgba(241,89,30,0.2);
     max-width:640px; width:100%; max-height:82vh; overflow-y:auto;
     padding:44px 40px;
     clip-path:polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
@@ -227,66 +258,72 @@
     background:none; border:none; color:var(--ash-dim);
     font-size:28px; line-height:1; cursor:pointer;
   }
-  .modal-close:hover{color:var(--white);}
+  .modal-close:hover{color:var(--signal);}
   .update-ver{
     font-family:'Barlow Condensed'; font-weight:600; font-size:15px;
     color:var(--void); background:var(--toxic);
-    padding:5px 10px; display:inline-block;
+    padding:5px 12px; display:inline-block;
     clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);
   }
   .modal-box h3{font-size:26px; text-transform:none; margin:16px 0 6px; font-weight:600;}
-  .modal-date{font-size:13px; color:var(--ash-dim); font-family:'Barlow Condensed';}
+  .modal-date{font-size:13px; color:var(--signal); font-family:'Barlow Condensed'; font-weight: 600;}
   .modal-body{margin-top:24px; font-size:15.5px; color:var(--ash); display:flex; flex-direction:column; gap:14px;}
-  .modal-body h4{font-family:'Barlow'; text-transform:none; color:var(--white); font-size:15.5px; font-weight:600; margin-top:6px;}
+  .modal-body h4{font-family:'Barlow'; text-transform:none; color:var(--toxic); font-size:16px; font-weight:600; margin-top:6px;}
 
   .custom-box {
     background: var(--panel2); border: 1px solid var(--steel); padding: 40px;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
     margin-bottom: 30px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
   }
   .custom-table {
-    width: 100%; border-collapse: collapse; margin-top: 20px;
+    width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--panel2);
+    border: 1px solid var(--steel);
   }
   .custom-table th, .custom-table td {
-    padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--steel);
+    padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--steel);
     font-size: 14.5px;
   }
-  .custom-table th { color: var(--toxic); font-family: 'Oswald'; text-transform: uppercase; }
+  .custom-table th { color: var(--signal); font-family: 'Oswald'; text-transform: uppercase; background: rgba(241,89,30,0.05); }
   .custom-table tr:hover { background-color: rgba(199,212,0,0.03); }
   
   .server-box-item {
-    background: var(--void); border: 1px solid var(--steel); padding: 24px; margin-bottom: 20px;
+    background: var(--void); border: 1px solid var(--steel); padding: 26px; margin-bottom: 20px;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+    transition: border-color 0.2s, transform 0.2s;
   }
-  .server-box-item code { background: rgba(0,0,0,0.5); padding: 4px 8px; color: var(--toxic); font-family: monospace; display: inline-block; margin-top: 6px; }
+  .server-box-item:hover { border-color: var(--toxic); transform: translateX(4px); }
+  .server-box-item code { background: rgba(0,0,0,0.7); padding: 6px 10px; color: var(--toxic); font-family: monospace; display: inline-block; margin-top: 8px; border: 1px solid var(--steel); }
 
   .register{border-top:1px solid var(--steel); background:var(--panel2);}
   .register-box{
-    max-width:560px;
-    border:1px solid var(--steel); padding:40px;
+    max-width:580px;
+    border:1px solid var(--signal-dim); padding:40px;
     clip-path:polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-    background:linear-gradient(160deg, rgba(241,89,30,0.05), transparent 60%);
+    background:linear-gradient(160deg, rgba(241,89,30,0.08), rgba(7,9,6,0.9) 60%);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
   }
   .form-row{display:flex; flex-direction:column; gap:8px; margin-bottom:20px;}
   .form-row label{
-    font-family:'Barlow Condensed'; font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
-    color:var(--ash-dim); font-weight:600;
+    font-family:'Barlow Condensed'; font-size:13.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--toxic); font-weight:600;
   }
   .form-row input, .form-row textarea, .form-row select{
     background:var(--void); border:1px solid var(--steel); color:var(--white);
     font-family:'Barlow'; font-size:15px; padding:12px 14px;
     clip-path:polygon(8px 0,100% 0,100% 100%,0 100%,0 8px);
     resize:vertical;
+    transition: border-color 0.2s;
   }
-  .form-row input:focus, .form-row textarea:focus, .form-row select:focus{outline:2px solid var(--signal); outline-offset:1px; border-color:var(--signal);}
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus{outline:none; border-color:var(--signal); box-shadow: 0 0 10px var(--wildfire-glow);}
   .form-row input::placeholder, .form-row textarea::placeholder{color:#5A5D50;}
  
-  footer{border-top:1px solid var(--steel); padding:50px 0 34px;}
+  footer{border-top:1px solid var(--signal-dim); padding:60px 0 34px; background: var(--void);}
   .foot-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; margin-bottom:36px;}
   .foot-links{display:flex; gap:48px; flex-wrap:wrap;}
-  .foot-col h5{font-size:13px; text-transform:uppercase; letter-spacing:0.07em; color:var(--ash-dim); margin-bottom:12px; font-family:'Barlow Condensed'; font-weight:600;}
-  .foot-col a{display:block; font-size:14.5px; color:var(--ash); margin-bottom:9px;}
-  .foot-col a:hover{color:var(--signal);}
+  .foot-col h5{font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--signal); margin-bottom:12px; font-family:'Barlow Condensed'; font-weight:600;}
+  .foot-col a{display:block; font-size:14.5px; color:var(--ash); margin-bottom:9px; transition: color 0.2s;}
+  .foot-col a:hover{color:var(--toxic);}
   .foot-bottom{
     display:flex; justify-content:space-between; padding-top:24px; border-top:1px solid var(--steel);
     font-size:13px; color:var(--ash-dim); flex-wrap:wrap; gap:10px;
@@ -333,8 +370,7 @@
  
 <header>
   <nav>
-    <div class="logo"><span class="dot"></span>GO:COUNTER</div>
-    <!-- NAVIGAČNÁ LIŠTA VŠETKY ODKAZY + CROSSHAIR -->
+    <div class="logo"><span class="dot"></span>GO:COUNTER <span style="font-size: 11px; color: var(--toxic); border: 1px solid var(--toxic); padding: 1px 6px; margin-left: 6px;">WILDFIRE</span></div>
     <div class="navlinks">
       <a href="#servers">Servers</a>
       <a href="#download">Download</a>
@@ -359,9 +395,9 @@
  
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-tag"><span class="pulse"></span>Servers Online</div>
-    <h1>GO:COUNTER<span class="spray">OFFICIAL SITE</span></h1>
-    <p class="hero-sub">Experience Counter-Strike exactly how it was back in 2015 – with classic engine, 128-tick rate servers, custom plugins, and retro community atmosphere.</p>
+    <div class="hero-tag"><span class="pulse"></span>Operation Wildfire Active</div>
+    <h1>GO:COUNTER<span class="spray">2016 WILDFIRE</span></h1>
+    <p class="hero-sub">Experience Counter-Strike exactly how it was back in 2016 – upgraded with Wildfire visual identity, 128-tick rate servers, custom plugins, and retro community atmosphere.</p>
     <div class="hero-actions">
       <a href="#servers" class="btn-primary">View Servers</a>
       <a href="#download" class="btn-ghost">Download Client</a>
@@ -411,7 +447,7 @@
     </div>
     <div class="custom-box" style="max-width: 700px;">
       <h3 style="color:var(--white); margin-bottom:14px;">Required Downloads</h3>
-      <p style="margin-bottom:16px;"><strong>Game Client (CS:GO Build)</strong><br>
+      <p style="margin-bottom:16px;"><strong>Game Client (CS:GO Wildfire Build)</strong><br>
       You must use this exact client version to avoid incompatibility issues:</p>
       <a href="https://download1586.mediafire.com/o4do55rxmjtgo6IL6PV6oWjU1mv9_-JGEQ9xQBjpAR9HpJ4quBqMgHiXQBKeae20sys960-XiyL6eohgau206Y8vfIEQUS5ER5TmeKnOHfpKncU8VVkPu9GKAxMx-ea-OV45NFLxQ8xFlCzgsNhWlfyhyOvZFQMpZZ2uMhX-DUhY/2rlbrxgfid4hw17/GOCOUNTER.zip" target="_blank" class="btn-primary" style="display:inline-block; margin-bottom:24px;">Download GO:COUNTER Client</a>
     </div>
@@ -429,7 +465,7 @@
       <span class="sec-num">03 / info</span>
     </div>
     <div style="max-width: 700px; font-size: 16px; color: var(--ash-dim); display: flex; flex-direction: column; gap: 16px;">
-      <p>This project was created out of pure retro nostalgia for players who want to experience Counter-Strike exactly how it was back in 2016 – without unnecessary modern updates, including the classic engine, SourceMod plugins, a fully functional RTV map voting system, and GOTV for future majors.</p>
+      <p>This project was created out of pure retro nostalgia for players who want to experience Counter-Strike exactly how it was back in 2016 – featuring Wildfire operations feel, classic engine, SourceMod plugins, a fully functional RTV map voting system, and GOTV for future majors.</p>
       <p>Brought to you by the community. Have fun! 🦾</p>
     </div>
   </div>
@@ -519,7 +555,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>Radmin Major 2016 (2026)</td>
+          <td>Wildfire Major 2016 (2026)</td>
           <td>??</td>
           <td><span style="color: var(--toxic);">??</span></td>
           <td>??</td>
@@ -540,7 +576,7 @@
       <span class="sec-num">06 / registration</span>
     </div>
     <form class="register-box" action="https://formsubmit.co/nosteamcsgo88@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New team registration — GO:COUNTER MAJOR">
+      <input type="hidden" name="_subject" value="New team registration — GO:COUNTER WILDFIRE">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://lukasss895.github.io/gocounter.net/">
@@ -550,13 +586,13 @@
       </div>
       <div class="form-row">
         <label for="reg-team">Team name</label>
-        <input type="text" id="reg-team" name="Team name" placeholder="e.g. Sqovaq Team" required>
+        <input type="text" id="reg-team" name="Team name" placeholder="e.g. Wildfire Squad" required>
       </div>
       <div class="form-row">
         <label for="reg-players">Player names</label>
         <textarea id="reg-players" name="Player names" rows="4" placeholder="One per line" required></textarea>
       </div>
-      <button type="submit" class="btn-primary">Send</button>
+      <button type="submit" class="btn-primary">Send Registration</button>
     </form>
   </div>
 </section>
@@ -566,7 +602,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <h2>Radmin Major - Tipsters Hall of Fame</h2>
+        <h2>Wildfire Major - Tipsters Hall of Fame</h2>
         <p>Submit predictions and battle for top spots.</p>
       </div>
       <span class="sec-num">07 / predictions</span>
@@ -611,7 +647,7 @@
     <div class="register-box" style="max-width:640px;">
       <p style="color:var(--ash-dim); font-size:14.5px; margin-bottom:20px;">Did you find a bug or a map error? Let me know here. It will be sent directly to my email and no one else will see it.</p>
       <form action="https://formsubmit.co/nosteamcsgo88@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New support message — GO:COUNTER">
+        <input type="hidden" name="_subject" value="New support message — GO:COUNTER WILDFIRE">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://lukasss895.github.io/gocounter.net/">
@@ -645,7 +681,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="logo" style="margin-bottom:10px;"><span class="dot"></span>GO:COUNTER</div>
+        <div class="logo" style="margin-bottom:10px;"><span class="dot"></span>GO:COUNTER WILDFIRE</div>
         <p style="color:var(--ash-dim); font-size:14px; max-width:320px;">Made For Nostalgia and CS:GO Community</p>
       </div>
       <div class="foot-links">
@@ -664,7 +700,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 GO:COUNTER - Official Site. Unofficial fan project.</span>
+      <span>© 2026 GO:COUNTER Wildfire - Official Site. Unofficial fan project.</span>
       <span>Built with love for 2016 CS:GO</span>
     </div>
   </div>
@@ -675,7 +711,7 @@
   const navlinks = document.querySelector('.navlinks');
   burger.addEventListener('click', () => {
     const open = navlinks.style.display === 'flex';
-    navlinks.style.cssText = open ? '' : 'display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:#0B0D0A; padding:20px 28px; border-bottom:1px solid #3A3D30; gap:18px;';
+    navlinks.style.cssText = open ? '' : 'display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:#070906; padding:20px 28px; border-bottom:1px solid #7A2E0F; gap:18px; z-index:999; box-shadow: 0 10px 30px rgba(0,0,0,0.8);';
   });
  
   const modal = document.getElementById('updateModal');
