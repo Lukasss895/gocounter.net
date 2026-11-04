@@ -19,9 +19,18 @@
     --white:#F4F5EE;
     --wildfire-glow: rgba(241, 89, 30, 0.25);
   }
+  
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   
+  /* --- CUSTOM CROSSHAIR KURZOR PRE CELÚ STRÁNKU --- */
+  body, button, input, textarea, select {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><line x1='12' y1='2' x2='12' y2='9' stroke='%23C7D400' stroke-width='2'/><line x1='12' y1='15' x2='12' y2='22' stroke='%23C7D400' stroke-width='2'/><line x1='2' y1='12' x2='9' y2='12' stroke='%23C7D400' stroke-width='2'/><line x1='15' y1='12' x2='22' y2='12' stroke='%23C7D400' stroke-width='2'/><circle cx='12' cy='12' r='1' fill='%23F1591E'/></svg>") 12 12, crosshair !important;
+  }
+  a, .btn-primary, .btn-ghost, .nav-cta, .burger, .news-card, .modal-close {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><line x1='12' y1='2' x2='12' y2='8' stroke='%23F1591E' stroke-width='2.5'/><line x1='12' y1='16' x2='12' y2='22' stroke='%23F1591E' stroke-width='2.5'/><line x1='2' y1='12' x2='8' y2='12' stroke='%23F1591E' stroke-width='2.5'/><line x1='16' y1='12' x2='22' y2='12' stroke='%23F1591E' stroke-width='2.5'/><circle cx='12' cy='12' r='2' fill='%23C7D400'/></svg>") 12 12, pointer !important;
+  }
+
   body {
     background-color: var(--void);
     background-image: linear-gradient(rgba(7, 9, 6, 0.9), rgba(7, 9, 6, 0.96)), url('csgo.jpg');
@@ -65,7 +74,7 @@
  
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(7,9,6,0.92);
+    background:rgba(7,9,6,0.94);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--signal-dim);
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -102,7 +111,7 @@
   }
   .nav-cta:hover { background: #ff6a2d; transform: translateY(-1px); }
 
-  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger{display:none; flex-direction:column; gap:5px; background:none; border:none;}
   .burger span{width:26px; height:2px; background:var(--signal); box-shadow: 0 0 5px var(--signal);}
  
   .hero{
@@ -204,7 +213,7 @@
   
   .news-card{
     background:var(--void); border:1px solid var(--steel); padding:28px; display:flex; flex-direction:column; gap:14px;
-    transition:all 0.2s ease; cursor:pointer;
+    transition:all 0.2s ease;
     position: relative;
   }
   .news-card:hover{
@@ -256,7 +265,7 @@
   .modal-close{
     position:absolute; top:18px; right:22px;
     background:none; border:none; color:var(--ash-dim);
-    font-size:28px; line-height:1; cursor:pointer;
+    font-size:28px; line-height:1;
   }
   .modal-close:hover{color:var(--signal);}
   .update-ver{
@@ -380,7 +389,6 @@
       <a href="#inventory" style="color: var(--toxic);">Inventory</a>
       <a href="#register">Register Team</a>
       <a href="#predictions">Predictions</a>
-      <a href="https://csgocrosshairs.com/generator/" target="_blank">Crosshair</a>
       <a href="#support">Support</a>
     </div>
     <div style="display: flex; gap: 10px; align-items: center;" id="auth-nav-container">
